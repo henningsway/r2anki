@@ -1,0 +1,17 @@
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<pre class="r"><code>library(knitr)
+thm &lt;- knit_theme$get(&quot;acid&quot;)
+
+thm = knit_theme$get()  # parse the theme to a list
+knit_theme$set(&quot;acid&quot;)
+
+opts_knit$set(out.format = NULL)
+
+set_header(highlight = &quot;zenburn&quot;)
+
+print(&quot;this!&quot;)</code></pre>
+<pre><code>## [1] &quot;this!&quot;</code></pre>
+<pre class="r"><code>print(&quot;this!&quot;)</code></pre>
+<pre><code>## [1] &quot;this!&quot;</code></pre>
+</div>
