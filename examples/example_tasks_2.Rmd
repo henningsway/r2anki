@@ -1,0 +1,32 @@
+# Titleheader
+
+## Chapter
+
+### Subchapter
+
+#### Task-1: Do this
+    
+```{r, eval = TRUE}
+stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
+#   ____________________________________________________________________________
+paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
+```
+
+Etwas Fließtext
+
+### Subchapter-2
+
+#### Task-1: Do this 
+    
+```{r, eval = TRUE}
+# Tdvs
+stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
+# Base
+paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
+```
+
+
+## Resources
+* [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
+* [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/)
+* [lubridate vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)

@@ -1,0 +1,20 @@
+# Titleheader
+
+## Chapter
+
+### Subchapter
+
+#### Task-1: Do this in R
+```{r, eval = TRUE}
+stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
+#   ____________________________________________________________________________
+paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
+```
+
+#### Task-2: Do this other cool thing in R
+```{r, eval = TRUE}
+print("very nice!")
+#   ____________________________________________________________________________
+cat("very nice! :D")
+cat("isn't it?")
+```
