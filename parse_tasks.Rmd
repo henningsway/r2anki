@@ -3,57 +3,67 @@ title: "Untitled"
 output: html_document
 ---
 
+Todo:
+- work with tibbles instead of data.frames
+- wrap this code in functions
+- make the arguments for the definition of "tasks" and "answers" (their beginning and ending) flexible
+- test code with longer examples-files or files from the tidyverse-cookbook
+
+
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE)
+# knitr::opts_chunk$set(echo = TRUE)
+
+# install.packages("tidyverse")
+library(magrittr)
+library(purrr)
 ```
 
+## Read in test_sourcefile
 ```{r}
-## install.packages("tidyverse")
+src <- readLines("examples/example_tasks.Rmd")
 ```
 
-```{r}
-# read test_sourcefile
-tf <- readLines("test_sourcefile.Rmd")
-tf
 
+## Get line numbers for tasks and answers (code)
+Maybe: define a function, that gets line numbers both for tasks and answers and writes them to a common object.
+```{r}
 # parse tasks
-l_task <- grep("####", tf)  # line of task  [alternative: grep("**Task**")]
-tf[l_task]
+l_task <- grep("####", src)  # line of task  [alternative: grep("**Task**")]
 
 # parse code
-l_code   <- grep("```", tf)   # start and end lines of code-chunk
-l_code_s <- l_code[seq(1, length(l_code), 2)]  # all start lines
-l_code_e <- l_code[seq(2, length(l_code), 2)]  # all end lines
+l_answer   <- grep("```", src)   # start and end lines of code-chunk
+l_answer_s <- l_answer[seq(1, length(l_answer), 2)]  # all start lines
+l_answer_e <- l_answer[seq(2, length(l_answer), 2)]  # all end lines
 ```
 
+
+## Create an empty data frame to store tasks and answers
 ```{r}
-# create an empty data frame
-tf_dat <- data.frame(l_task   = integer(),
+src_dat <- data.frame(l_task   = integer(),
                      task     = character(),
-                     l_code_s = integer(),
-                     l_code_e = integer(),
+                     l_answer_s = integer(),
+                     l_answer_e = integer(),
                      stringsAsFactors = FALSE)
  
 # write to the table
-tf_dat[seq_along(l_task), "l_task"] <- l_task
-tf_dat[seq_along(l_task), "task"] <- tf[l_task]
-tf_dat[seq_along(l_code_s), "l_code_s"] <- l_code_s
-tf_dat[seq_along(l_code_e), "l_code_e"] <- l_code_e
+src_dat[seq_along(l_task), "l_task"] <- l_task
+src_dat[seq_along(l_task), "task"] <- src[l_task]
+src_dat[seq_along(l_answer_s), "l_answer_s"] <- l_answer_s
+src_dat[seq_along(l_answer_e), "l_answer_e"] <- l_answer_e
 
-  # define a function to get code-content
-get_code <- function(i){
-  tf[seq(l_code_s[i] + 1, l_code_e[i] - 1, 1)]
+#! define a function to get code-content
+get_answer <- function(i){
+  src[seq(l_answer_s[i] + 1, l_answer_e[i] - 1, 1)]
 }
 
-tf_dat["code"] <- map(seq_along(l_code_s), get_code) %>% list
-
-## todo
-# create tibble
+src_dat["code"] <- map(seq_along(l_answer_s), get_answer) %>% list
 ```
 
 
+## write the data.frame/ tibble to a csv in the appropriate format
 
-## parse multiple files
+
+# Later: parse multiple files
 ```{r, eval=FALSE}
 ## Create two text files with content 
 filenames <- c( tempfile(), tempfile() )
