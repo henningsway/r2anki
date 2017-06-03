@@ -1,3 +1,6 @@
+`insertLines <- allLines[which(stri_detect_fixed(allLines, "INSERT INTO"))]`
+
+
 ## interesting links:
 - http://stackoverflow.com/questions/37944197/add-a-css-class-to-single-code-chunks-in-rmarkdown
 - http://stackoverflow.com/questions/41030477/changing-chunk-background-color-in-rmarkdown/41031276
