@@ -1,20 +1,68 @@
-# Titleheader
+---
+title: "A Template for `r2anki`-Flashcards"
+output:
+  html_document:
+    theme: "flatly"
+    # "readable"
+    highlight: "pygments"
+    # "kate"
+    # "textmate"
+    self_contained: false
+---
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE
+)
+```
 
-## Chapter
+This is supposed to be a first draft for a template, that contains relevant information to create anki-flashcards from html. This file can be parsed, so that a related csv-table can easily be created.
 
-### Subchapter
+The template format should be easy to understand and use and be as "native"" to Rmarkdown as possible. It should also be a clear input for the csv-parser. *Feedback is very welcome.*
 
-#### Task-1: Do this in R
+The general idea is to have several longer Rmd-files for several topics, that could possibly be maintained by multiple people on github or so. For each topic, there can be subtopics with several number of cards defined. These are currently defined on the 4th level, with a 5th level header seperating the FrontSide and BackSide of the Cards.
+
+It would be planned to have this as an installable Rmd-template, with an Rstudio-Addion and Shortcut for "Creating a new card".
+
+# Strings
+<!-- Tags: strings-->
+## Manipulating Strings
+#### [strings01]: Concatenate Strings in base *R*
+<!-- Tags: r2anki-demo, task-->
+##### ------ FrontSide ------
+How would you concatenate strings in `base` *R*?
+(And how would the output differ from a `stringr`-solution?)
+
+##### ------ BackSide ------
 ```{r, eval = TRUE}
-stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
-#   ____________________________________________________________________________
 paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
 ```
+*Comment:* `stringr::str_c`-does handle `NA`s more strictly than `paste`.
 
-#### Task-2: Do this other cool thing in R
-```{r, eval = TRUE}
-print("very nice!")
-#   ____________________________________________________________________________
-cat("very nice! :D")
-cat("isn't it?")
+# Dataprep
+## Reading Data into R
+#### [dataprep01] Saving to csv
+##### ------ FrontSide ------
+Write `df` to a csv. Rehearse the most important arguments.
+
+##### ------ BackSide ------
+```{r, echo = TRUE, eval = FALSE}
+write.table(x, file = "", append = FALSE, quote = TRUE, sep = " ",
+            eol = "\n", na = "NA", dec = ".", row.names = TRUE,
+            col.names = TRUE, qmethod = c("escape", "double"),
+            fileEncoding = "")
 ```
+
+
+------------ General Template ------------
+
+# Topic
+<!-- Tags: *general tags for all cards in the topic* -->
+## Subtopic
+#### [id] Title for the Task
+<!-- Tags: *additional tags for this specific card* -->
+##### ------ FrontSide ------
+Description of the task.
+
+##### ------ BackSide ------
+Solution for the task
