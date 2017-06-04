@@ -16,14 +16,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-This is supposed to be a first draft for a template, that contains relevant information to create anki-flashcards from html. This file can be parsed, so that a related csv-table can easily be created.
-
-The template format should be easy to understand and use and be as "native"" to Rmarkdown as possible. It should also be a clear input for the csv-parser. *Feedback is very welcome.*
-
-The general idea is to have several longer Rmd-files for several topics, that could possibly be maintained by multiple people on github or so. For each topic, there can be subtopics with several number of cards defined. These are currently defined on the 4th level, with a 5th level header seperating the FrontSide and BackSide of the Cards.
-
-It would be planned to have this as an installable Rmd-template, with an Rstudio-Addion and Shortcut for "Creating a new card".
-
 # Strings
 <!-- Tags: strings-->
 ## Manipulating Strings
