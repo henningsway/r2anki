@@ -1,0 +1,80 @@
+---
+title: "anki import content"
+output: 
+  html_document:
+    highlight: "zenburn"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+```
+
+
+#### **Paste/concatenate strings.**
+    
+    ```{r, eval = TRUE}
+    stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
+    #   ____________________________________________________________________________
+    paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
+    ```
+
+#### **Treat `NA`'s as strings (`"NA"`).**
+    
+    ```{r, eval = TRUE}
+    stringr::str_replace_na(c(NA, NaN, factor("lalala"), character(0)))
+    # note that the `c` function coerces the factor to its integer representation
+    #   ____________________________________________________________________________
+    base_replace_na <- function(x) {ifelse(is.na(x), "NA", x)}
+    base_replace_na(c(NA, NaN, factor("lalala"), character(0)))
+    ```
+
+#### **Count the number of letters in a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_length(c("four", NA, NaN, NULL, factor("lalala")))
+    #   ____________________________________________________________________________
+    nchar(c("four", NA, NaN, NULL, factor("lalala")))
+    ```
+
+#### **Return the last letter of a string, subset a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_sub(c("five", "six"), -1)
+    #   ____________________________________________________________________________
+    substr(c("five", "six"), 
+           start = nchar(c("five", "six")), 
+           stop = nchar(c("five", "six")))
+    ```
+    
+#### **Repeat/replicate/duplicate a string several times.**
+
+    ```{r, eval = TRUE}
+    stringr::str_dup("_a_", 5)
+    #   ____________________________________________________________________________
+    paste(rep("_a_", 5), collapse = "")
+    ```
+    
+#### **Remove/trim spaces at the beginning (leading) and/or end (trailing) of a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_trim(c("  2left_1right ", "   "), side = c("left"))
+    #   ____________________________________________________________________________
+    # ^\\s+|\\s+$ is the regex for one or more spaces in the beginning
+    # or one or more spaces at the end
+    gsub("^\\s+", "", c("  2left_1right ", "   "))
+    ```
+    
+#### **Fill/pad spaces (or other characters) before and/or after a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_pad(c("lalala", ""), width = 7)
+    #   ____________________________________________________________________________
+    unname(
+      vapply(c("lalala", ""), 
+             function(x) if(nchar(x) < 7) {
+               paste0(rep(" ", 7 - nchar(x)), x, collapse = "")
+               } else {x},
+             character(1)
+             )
+      )
+    ```

@@ -1,0 +1,434 @@
+---
+title: "A Template for `r2anki`-Flashcards"
+output:
+  html_document:
+    theme: "flatly"
+    # "readable"
+    highlight: "pygments"
+    # "kate"
+    # "textmate"
+    self_contained: false
+---
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE
+)
+```
+
+# Atomics
+
+## Strings
+
+### Basic string operations
+
+1. **Paste/concatenate strings.**
+    
+    ```{r, eval = TRUE}
+    stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
+    #   ____________________________________________________________________________
+    paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
+    ```
+
+1. **Treat `NA`'s as strings (`"NA"`).**
+    
+    ```{r, eval = TRUE}
+    stringr::str_replace_na(c(NA, NaN, factor("lalala"), character(0)))
+    # note that the `c` function coerces the factor to its integer representation
+    #   ____________________________________________________________________________
+    base_replace_na <- function(x) {ifelse(is.na(x), "NA", x)}
+    base_replace_na(c(NA, NaN, factor("lalala"), character(0)))
+    ```
+
+1. **Count the number of letters in a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_length(c("four", NA, NaN, NULL, factor("lalala")))
+    #   ____________________________________________________________________________
+    nchar(c("four", NA, NaN, NULL, factor("lalala")))
+    ```
+
+1. **Return the last letter of a string, subset a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_sub(c("five", "six"), -1)
+    #   ____________________________________________________________________________
+    substr(c("five", "six"), 
+           start = nchar(c("five", "six")), 
+           stop = nchar(c("five", "six")))
+    ```
+    
+1. **Repeat/replicate/duplicate a string several times.**
+
+    ```{r, eval = TRUE}
+    stringr::str_dup("_a_", 5)
+    #   ____________________________________________________________________________
+    paste(rep("_a_", 5), collapse = "")
+    ```
+    
+1. **Remove/trim spaces at the beginning (leading) and/or end (trailing) of a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_trim(c("  2left_1right ", "   "), side = c("left"))
+    #   ____________________________________________________________________________
+    # ^\\s+|\\s+$ is the regex for one or more spaces in the beginning
+    # or one or more spaces at the end
+    gsub("^\\s+", "", c("  2left_1right ", "   "))
+    ```
+    
+1. **Fill/pad spaces (or other characters) before and/or after a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_pad(c("lalala", ""), width = 7)
+    #   ____________________________________________________________________________
+    unname(
+      vapply(c("lalala", ""), 
+             function(x) if(nchar(x) < 7) {
+               paste0(rep(" ", 7 - nchar(x)), x, collapse = "")
+               } else {x},
+             character(1)
+             )
+      )
+    ```
+    
+1. **Sort strings for example, by a different local alphabetic order.**
+
+    ```{r, eval = TRUE}
+    # The vowels come before the consonants in Hawaiian
+    stringr::str_sort(letters[1:10], locale = "haw")
+    #   ____________________________________________________________________________
+    # one can use `sort()`, but one has to know the specific locale
+    ```
+    
+1. **Return the order of stringelements within a specific alphabet**
+
+    ```{r, eval = TRUE}
+    # The vowels come before the consonants in Hawaiian
+    stringr::str_order(letters[1:10], locale = "haw")
+    #   ____________________________________________________________________________
+    # one can use `sort()`, but one has to know the specific locale
+    ```
+    
+1. **Change the encoding of a string**
+
+    ```{r, eval = TRUE}
+    # Example from encoding?stringi::stringi
+    x <- rawToChar(as.raw(177))
+    x
+    stringr::str_conv(x, "ISO-8859-2") # Polish "a with ogonek", (run this line in RStudio)
+    stringr::str_conv(x, "ISO-8859-1") # Plus-minus
+    #   ____________________________________________________________________________
+    ```
+    
+1. **Return the first two words of a string**
+
+    ```{r, eval = TRUE}
+    stringr::word("Hello, how are you?", 1, 2)
+    #   ____________________________________________________________________________
+    ```
+    
+1. **Format a string (change width, indentaion, ...).**
+
+    ```{r, eval = TRUE}
+    cat(stringr::str_wrap("Hello, how are you?", width = 10, indent = 0, exdent = 2))
+    #   ____________________________________________________________________________
+    ```
+
+### Pattern matching
+
+1. **Does a string contain a specific sequence of characters?**
+
+    ```{r, eval = TRUE}
+    stringr::str_detect(c("my number is 110", "call 911"), "\\d{3}")
+    #   ____________________________________________________________________________
+    grepl("\\d{3}", c("my number is 110", "call 911"))
+    ```
+   
+1. **Return every string that contains a specific sequence of characters?**
+
+    ```{r, eval = TRUE}
+    stringr::str_subset(c("my number is 110", "call 911"), "\\d{3}")
+    #   ____________________________________________________________________________
+    grep("\\d{3}", c("my number is 110", "call 911"), value = TRUE)
+    ```
+
+1. **Return the (first) start and end index of substrings within a string?**
+
+    ```{r, eval = TRUE}
+    # use stringr::str_locate_all to get a matrix of all start and end indexes
+    stringr::str_locate(c("my 112 number is 110", "call 911"), c("\\d{3}"))
+    #   ____________________________________________________________________________
+    # Use gregexpr to construct something similar to str_locate_all
+    matches <- regexpr("\\d{3}", c("my 112 number is 110", "call 911"))
+    
+    # formatting
+    match_lengths <- attr(matches, "match.length")
+    attributes(matches) <- NULL
+    match_indices <- matrix(c(matches, matches + match_lengths - 1), ncol = 2)
+    colnames(match_indices) <- c("start", "end")
+    
+    # output
+    match_indices
+    ```
+
+1. **Return the (first) matched substring within a string?**
+
+    ```{r, eval = TRUE}
+    # use stringr::str_extract_all to get a matrix of all matched substrings
+    stringr::str_extract(c("my 112 number is 110", "call 911"), c("\\d{3}"))
+    #   ____________________________________________________________________________
+    # combine `substr()` with match_indices from above
+    ```
+
+1. **Return the matching strings and matched capture groups.**
+
+    ```{r, eval = TRUE}
+    # the example from the stringr vignette
+    strings <- c(
+      "apple",
+      "219 733 8965", 
+      "329-293-8753", 
+      "Work: 579-499-7527; Home: 543.355.3679"
+      )
+    phone <- "([2-9][0-9]{2})[- .]([0-9]{3})[- .]([0-9]{4})"
+    
+    stringr::str_match(strings, phone)
+    # Use stringr::str_match_all for list return
+    #   ____________________________________________________________________________
+    # `regmatches()`
+    ```
+    
+1. **Replace/substitute the first matching subtstring within a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_replace(c("my 112 number is 110", "call 911"),
+                         c("\\d{1}(\\d{2})"), "\\1\\1")
+    #   ____________________________________________________________________________
+    sub(c("\\d{1}(\\d{2})"), "\\1\\1", c("my 112 number is 110", "call 911"))
+    ```
+    
+1. **Replace/substitute all matching subtstrings within a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_replace_all(c("my 112 number is 110", "call 911"),
+                             c("\\d{1}(\\d{2})"), "\\1\\1")
+    #   ____________________________________________________________________________
+    gsub(c("\\d{1}(\\d{2})"), "\\1\\1", c("my 112 number is 110", "call 911"))
+    ```    
+    
+1. **Split strings by any pattern into different (optionally n) pieces.**
+
+    ```{r, eval = TRUE}
+    # returns a matrix and padds with empty strings, when n is greater than the
+    # number of pieces
+    stringr::str_split_fixed(c("lalala lala la",
+                               "blabla lala la"),
+                             c(" ", "b"), 5)
+    # returns a list
+    stringr::str_split(c("lalala lala la",
+                         "blabla lala la"),
+                       c(" ", "b"), 5)
+    #   ____________________________________________________________________________
+    # returns a list, but does not have an n argument (however, it shouldn't be
+    # too hard to create one).
+    strsplit(c("lalala lala la",
+               "blabla lala la"),
+             c(" ", "b"))
+    ```
+
+1. **Set all characters to lower/upper case.**
+
+    ```{r, eval = TRUE}
+    stringr::str_to_lower("aBcDe")
+    stringr::str_to_upper("aBcDe")
+    #   ____________________________________________________________________________
+    tolower("aBcDe")
+    toupper("aBcDe")
+    ```  
+
+1. **Truncate a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_trunc("123456789", width = 7, side = "right", ellipsis = "")
+    #   ____________________________________________________________________________
+    ```  
+
+#### Regular expressions
+
+1. **Where can I learn about regular expressions?**
+
+  *  `?stringr::modifiers` for special regular expression functionality of the stringr package.
+  *  [reference sheet](http://www.regular-expressions.info/reference.html)
+  *  [interactively test](http://regexr.com/)
+  *  [Build a regular expressin](http://www.txt2re.com/)
+  *  Try the `str_view()` function to see, which substring a regex matches
+  
+    ```{r, eval = TRUE}
+    stringr::str_view(c("abc", "a.c_blabla", "bef"), "a\\.c")
+    ```
+
+1. **How to test regular expressions?**
+
+  > When writing regular expressions, I strongly recommend generating a list of positive (pattern should match) and negative (pattern shouldn’t match) test cases to ensure that you are matching the correct components.
+  
+#### Modifiers
+
+1.  **Count the number of words within a string.**
+
+    ```{r, eval = TRUE}
+    words <- c("These are some words. 
+               Some more words.")
+    stringr::str_count(words, stringr::boundary("word"))
+    #   ____________________________________________________________________________
+    sapply(gregexpr("\\W+", words), length) + 1
+    length(unlist(strsplit(words, " ")))  # doesn't really work
+    sapply(strsplit(words, " "), length)
+    ```
+    
+1.  **Count the number of lines within a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_count(words, stringr::boundary("line_break")) -
+    stringr::str_count(words, stringr::boundary("word"))
+    #   ____________________________________________________________________________
+    ```
+
+1.  **Count the number of sentences within a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_count(words, stringr::boundary("sentence"))
+    #   ____________________________________________________________________________
+    ```
+
+1.  **Split a string by characters.**
+
+    ```{r, eval = TRUE}
+    stringr::str_split(words, stringr::boundary("character"))
+    #   ____________________________________________________________________________
+    strsplit(words, "")
+    ```
+
+### List output
+
+1. **How to work with string functions, that return lists?**
+
+## Factors
+
+**Task:** Reorder the levels of a factor by another variable.
+```{r}
+data(iris)
+
+levels(iris$Species)
+
+library(dplyr)
+iris %>%
+  group_by(Species) %>% 
+  summarize(mean_Sepal_Length = mean(Sepal.Length)) %>% 
+  arrange(desc(mean_Sepal_Length)) -> d
+
+levels(iris$Species) <- d$Species
+levels(iris$Species)
+#   ____________________________________________________________________________
+
+
+```
+
+
+**Task:** Reverse the order of factor levels.
+```{r}
+
+#   ____________________________________________________________________________
+levels(iris$Species) <- rev(levels(iris$Species))
+```
+
+
+**Task:** Change specific levels of a factor by name, while preserving the order.
+```{r}
+
+#   ____________________________________________________________________________
+levels(iris$Species)[2] <- "Flower B"
+```
+
+**Task:** Move specific factor levels in front of all others.
+
+```{r}
+#   ____________________________________________________________________________
+data(iris)
+levels(iris$Species) <- c(levels(iris$Species)[2], levels(iris$Species)[-2])
+```
+
+
+**Task:** Join/bind/combine/compose/unite rare factor levels into one.
+```{r}
+mtcars$cyl %>% 
+  factor() %>% 
+  forcats::fct_lump(n = 1)  # better example needed
+
+mtcars$cyl %>% 
+  factor() %>%
+  forcats::fct_collapse(Other = c("4", "6"))
+
+#   ____________________________________________________________________________
+
+```
+
+
+**Task:** Join/bind/combine/compose/unite common factor levels into one.
+```{r}
+
+#   ____________________________________________________________________________
+
+
+```
+
+
+## Dates and times
+**Task:** Convert a string into a date.
+```{r}
+lubridate::ymd("2017/02/20")
+#   ____________________________________________________________________________
+as.Date("2017/02/20")
+as.Date(c("2017/02/20", "2017/02/21"))  # also works for vectors
+
+format(Sys.Date(), "%a %b %d")
+
+format(Sys.Date(), "%a, den %d %B %c")
+# compare ?strptime
+
+#strptime()
+
+```
+
+#### **Task**: Add days (as an integer) to a date.
+```{r collapse = TRUE}
+lubridate::ymd("2017/02/20") + 5
+#   ____________________________________________________________________________
+as.Date("2017/02/20") + 5
+as.numeric(as.Date("2017/02/20"))
+as.Date("2017/02/20") - as.numeric(as.Date("2017/02/20"))
+
+as.Date(50, origin="2017-01-01")
+
+
+dates <- c("02/27/92", "02/27/92", "01/14/92", "02/28/92", "02/01/92")
+as.Date(dates, "%m/%d/%y") + 7
+```
+
+**Task:** Generate a (dense) sequence of days/years/months.
+```{r}
+lubridate::ymd("2015-01-01")+ months(0:23)
+
+#   ____________________________________________________________________________
+seq(as.Date("2015-01-01"), length=24, by="1 day")
+seq(as.Date("2015-01-01"), length=24, by="1 month")
+seq(as.Date("2015-01-01"), length=24, by="1 year")
+
+# Alternative 1
+zoo::as.yearmon("2010-01-01") + 0:2/12  # ist nicht wirklich base, ich weiß.
+```
+
+
+## Resources
+* [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
+* [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/)
+* [lubridate vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
