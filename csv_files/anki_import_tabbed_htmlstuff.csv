@@ -1,7 +1,0 @@
-card1	"<p>How would you concatenate strings in <code>base</code> <em>R</em>? (And how would the output differ from a <code>stringr</code>-solution?)</p>"	"<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-<span class="co">#&gt; [1] &quot;abNANaNlalala&quot;</span></code></pre></div>
-<p><em>Comment:</em> <code>stringr::str_c</code>-does handle <code>NA</code>s more strictly than <code>paste</code>.</p>
-</div>
-</div>
-</div>
-</div>"
