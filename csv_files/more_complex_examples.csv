@@ -1,0 +1,47 @@
+<h4><strong>Treat <code>NA</code>’s as strings22 (<code>&quot;NA&quot;</code>).</strong></h4>	"<pre><code>```r
+stringr::str_replace_na(c(NA, NaN, factor(&quot;lalala&quot;), character(0)))
+## [1] &quot;NA&quot;  &quot;NaN&quot; &quot;1&quot;
+# note that the `c` function coerces the factor to its integer representation
+#   ____________________________________________________________________________
+base_replace_na &lt;- function(x) {ifelse(is.na(x), &quot;NA&quot;, x)}
+base_replace_na(c(NA, NaN, factor(&quot;lalala&quot;), character(0)))
+## [1] &quot;NA&quot;  &quot;NaN&quot; &quot;1&quot;
+```</code></pre>
+</div>
+<div id=""count-the-number-of-letters-in-a-string."" class=""section level4"">
+"
+
+
+
+"<h4><strong>Count the number of letters in a string.22</strong></h4>
+"	"<pre><code>```r
+stringr::str_length(c(&quot;four&quot;, NA, NaN, NULL, factor(&quot;lalala&quot;)))
+## [1]  4 NA  3  1
+#   ____________________________________________________________________________
+nchar(c(&quot;four&quot;, NA, NaN, NULL, factor(&quot;lalala&quot;)))
+## [1]  4 NA  3  1
+```</code></pre>
+</div>
+<div id=""return-the-last-letter-of-a-string-subset-a-string."" class=""section level4"">
+"
+
+
+
+
+"<h4><strong>Yet another import-try! :)</strong></h4>
+"	"<pre class="r"><code>stringr::str_c(&quot;a&quot;, &quot;b&quot;, NA, NaN, NULL, factor(&quot;lalala&quot;), character(0))</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>#   ____________________________________________________________________________
+paste(&quot;a&quot;, &quot;b&quot;, NA, NaN, NULL, factor(&quot;lalala&quot;), character(0), sep = &quot;&quot;)</code></pre>
+<pre><code>## [1] &quot;abNANaNlalala&quot;</code></pre>
+</div>
+<div id="task-2-do-this-other-cool-thing-in-r" class="section level4">
+<h4>Task-2: Do this other cool thing in R</h4>
+<pre class="r"><code>print(&quot;very nice!&quot;)</code></pre>
+<pre><code>## [1] &quot;very nice!&quot;</code></pre>
+<pre class="r"><code>#   ____________________________________________________________________________
+cat(&quot;very nice! :D&quot;)</code></pre>
+<pre><code>## very nice! :D</code></pre>
+<pre class="r"><code>cat(&quot;isn't it?&quot;)</code></pre>
+<pre><code>## isn't it?</code></pre>
+"
