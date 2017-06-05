@@ -1,0 +1,28 @@
+---
+title: "A Template for `r2anki`-Flashcards"
+output:
+  html_document:
+    theme: "flatly"
+    # "readable"
+    highlight: "pygments"
+    # "kate"
+    # "textmate"
+    self_contained: false
+---
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE
+)
+```
+
+# Topic
+<!-- Tags: *general tags for all cards in the topic* -->
+## Subtopic
+#### [id] Title for the Task
+<!-- Tags: *additional tags for this specific card* -->
+##### ------ FrontSide ------
+Description of the task.
+
+##### ------ BackSide ------
+Solution for the task

@@ -1,0 +1,4 @@
+Name: Insert r2anki flashcard
+Description: Call this function as an addin to insert a new flashcard at the cursor position.
+Binding: insert_flashcard_template
+Interactive: false
