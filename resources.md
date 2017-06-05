@@ -6,13 +6,10 @@
 - http://stackoverflow.com/questions/41030477/changing-chunk-background-color-in-rmarkdown/41031276
 - interesting: http://stackoverflow.com/questions/40252885/how-to-syntax-highlight-inline-r-code-in-r-markdown
 
-
-
 - might be possible to update cards without loosing progresse:
     - http://superuser.com/questions/698902/can-i-create-an-anki-deck-from-a-csv-file
 - apparently it is possible to create html content!
     - https://apps.ankiweb.net/docs/manual.html#other-html
-    
     
 - some Anki css stuff
     - https://gist.github.com/zabbarob/5536786

@@ -1,5 +1,19 @@
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+---
+title: "A Template for `r2anki`-Flashcards"
+output:
+  html_document:
+    theme: "flatly"
+    # "readable"
+    highlight: "pygments"
+    # "kate"
+    # "textmate"
+    self_contained: false
+---
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE
+)
 ```
 
 # Atomics
