@@ -18,43 +18,64 @@ knitr::opts_chunk$set(
 
 # Strings
 <!-- Tags: strings-->
-## Manipulating Strings
 #### [strings01]: Concatenate Strings in base *R*
 <!-- Tags: r2anki-demo, task-->
-##### ------ FrontSide ------
 How would you concatenate strings in `base` *R*?
 (And how would the output differ from a `stringr`-solution?)
 
-##### ------ BackSide ------
+<!-- start backside -->
 ```{r, eval = TRUE}
 paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
 ```
 *Comment:* `stringr::str_c`-does handle `NA`s more strictly than `paste`.
+<!-- end backside -->
 
 # Dataprep
-## Reading Data into R
 #### [dataprep01] Saving to csv
-##### ------ FrontSide ------
+<!-- Tags: r2anki-demo, task-->
 Write `df` to a csv. Rehearse the most important arguments.
 
-##### ------ BackSide ------
+<!-- start backside -->
 ```{r, echo = TRUE, eval = FALSE}
 write.table(x, file = "", append = FALSE, quote = TRUE, sep = " ",
             eol = "\n", na = "NA", dec = ".", row.names = TRUE,
             col.names = TRUE, qmethod = c("escape", "double"),
             fileEncoding = "")
 ```
+<!-- end backside -->
 
+# Testcard
+<!-- Tags: *general tags for all cards in the topic* -->
+#### [id] this card has just a fronside
+<!-- Tags: *additional tags for this specific card* -->
+```{r, eval=FALSE}
+unlink(x, recursive = FALSE, force = FALSE)
+```
+<!-- start backside -->
+<!-- end backside -->
 
------------- General Template ------------
+# r2anki-note-type-card
+<!-- Tags: *general tags for all cards in the topic* -->
+#### r2anki-explanation
+<!-- Tags: *additional tags for this specific card* -->
+You can import the tsv to anki via `Ctrl + i`. Please allow html in the import and choose "r2anki_pygments" as a card type and import the data into asuitable deck.
+
+<!-- start backside -->
+```{r include=FALSE}
+thanks <- "thank you for trying the r2anki-package! :)"
+```
+```{r}
+print(thanks)
+```
+<!-- end backside -->
 
 # Topic
 <!-- Tags: *general tags for all cards in the topic* -->
 ## Subtopic
 #### [id] Title for the Task
 <!-- Tags: *additional tags for this specific card* -->
-##### ------ FrontSide ------
 Description of the task.
 
-##### ------ BackSide ------
+<!-- start backside -->
 Solution for the task
+<!-- end backside -->
