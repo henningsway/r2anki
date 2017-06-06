@@ -1,11 +1,10 @@
 Package: r2anki
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Effectively Remember R-Skills through Spaced Repetition Learning
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Henning Bumann
+Maintainer: Henning Bumann <h_b@posteo.org>
+Description: The `r2anki`-package offers an automated approach to export notes written in RMarkdown to [Anki](https://ankisrs.net), a software for spaced repitition learning.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
