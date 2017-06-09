@@ -10,17 +10,16 @@ parse2csv(srcfile)
 \item{sourcefile}{path to \code{r2Anki}-Template}
 }
 \description{
-This is an example for a link to an other package \code{\link[roxygen2:roxygenize]{roxygen2::roxygenize()}} (from \code{roxygen2}).
 The goal of \code{parse2csv} is to compile an Anki-Rmd-Template.
 }
 \examples{
-parse2csv()
+## Define a Markdown-Template (read in from pkg-examples)
 }
 \references{
 https://en.wikipedia.org/wiki/Spaced_repetition
 }
 \seealso{
-\link{brocolors}
+\link{addin_r2anki_flashcard}
 }
 \author{
 Henning Bumann, \email{h_b@posteo.de}
