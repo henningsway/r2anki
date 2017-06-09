@@ -3,7 +3,7 @@
 
 ### Feedback Malte
 - fehlende Backsides ermöglichen/berücksichtigen/mitbedenken
-- inputlevels 8header 1-3 gut überlegen)
+- inputlevels (header 1-3 gut überlegen)
 - auch kartensets mit nur einem header ermöglichen
 
 ### ideen
