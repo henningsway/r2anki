@@ -1,3 +1,19 @@
+#' Parse an Rmd-`r2anki`-**Template** to csv (for Import into Anki).
+#'
+#' This is an example for a link to an other package [roxygen2::roxygenize()] (from `roxygen2`).
+#' The goal of `parse2csv` is to compile an Anki-Rmd-Template.
+#'
+#'
+#' @param sourcefile path to `r2Anki`-Template
+#'
+#' @examples
+#' parse2csv()
+#' @author Henning Bumann, \email{h_b@@posteo.de}
+#' @references https://en.wikipedia.org/wiki/Spaced_repetition
+#' @seealso [brocolors]
+#' @export
+
+
 parse2csv <- function(srcfile){
   require(tibble)
 
