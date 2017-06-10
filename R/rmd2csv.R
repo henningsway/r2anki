@@ -11,14 +11,14 @@
 #' @seealso [addin_r2anki_flashcard]
 #' @export
 
-rmd2csv <- function(srcfile){
+rmd2csv <- function(rmd_sourcefile){
   require(tibble)  # where do I best put this requirement?
                    # (and do i really need it?)
 
   # render the source to html and read in result
-  rmarkdown::render(srcfile)
+  rmarkdown::render(rmd_sourcefile)
   html_srcfile <- sub(pattern = "(.*?)\\..*$",
-                      replacement = "\\1.html", srcfile)
+                      replacement = "\\1.html", rmd_sourcefile)
       # i think, the above statement could also be done with basefile() now.
   lines_srcfile <- readLines(html_srcfile)
   file.remove(html_srcfile)
@@ -35,13 +35,18 @@ rmd2csv <- function(srcfile){
   backside <- unlist(lapply(Map(seq, start_backside + 1, end_backside),
                         function(x) paste(lines_srcfile[x], collapse = "<br>")))
 
+  ## shorten links to images
+  frontside <- shorten_imagelinks(frontside, rmd_sourcefile)
+  backside  <- shorten_imagelinks(frontside, rmd_sourcefile)
+
+
   ## Combine in dataframe
   cards <- data.frame(frontside,
                    backside,
                    id = lines_srcfile[card])
 
   ## Write to csv
-  write.table(cards, sub(pattern = "(.*?)\\..*$", replacement = "\\1.tsv", srcfile),
+  write.table(cards, sub(pattern = "(.*?)\\..*$", replacement = "\\1.tsv", rmd_sourcefile),
               sep = "\t",
               row.names = FALSE, col.names = FALSE,
               fileEncoding = "utf-8", quote = FALSE)
@@ -67,3 +72,26 @@ rmd2csv <- function(srcfile){
 # add logic if either front or backside are missing (requires some thinking.)
   # (values need to be between the two values of the other ... else its missing or so)
 # Later: parse multiple files (concatanate these files)
+
+
+
+#'  Shorten image-links in html as appropriate for Anki.
+#'
+#'  The Function replaces and shortes <img> paths in the html code.
+#'  It seems to be operating on the line level, so it needs to be called before
+#'  the html-code is collapsed. It would be really nice, if I could call it
+#'  after. Maybe I can, would there be a problem?
+shorten_imagelinks <- function(html_source,
+                               rmd_sourcefile) {
+  imagelinks <- html_source[grep("<img src=", html_source)]
+
+  old_path <- basename(rmd_sourcefile) %>%
+    tools::file_path_sans_ext() %>%
+    paste0("_files/figure-html/")  # could this be made more robust?
+
+  gsub(old_path, "", imagelinks)
+}
+
+## Testing the function
+##
+
