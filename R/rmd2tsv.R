@@ -11,7 +11,7 @@
 #' @seealso [addin_r2anki_flashcard]
 #' @export
 
-rmd2csv <- function(rmd_sourcefile){
+rmd2tsv <- function(rmd_sourcefile){
   require(tibble)  # where do I best put this requirement?
                    # (and do i really need it?)
 
