@@ -4,15 +4,13 @@
 #'
 #' @export
 addin_r2anki_flashcard <- function() {
-  rstudioapi::insertText("# Topic
-<!-- Tags: *general tags for all cards in the topic* -->
-  ## Subtopic
-  #### [id] Title for the Task
-  <!-- Tags: *additional tags for this specific card* -->
-  ##### ------ FrontSide ------
-Description of the task.
+  rstudioapi::insertText("#### Title of Card
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
 
-##### ------ BackSide ------
-Solution for the task
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
 ")
 }
