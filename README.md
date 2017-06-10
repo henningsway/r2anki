@@ -9,7 +9,7 @@ When you learn and use *R* you need to memorize important commands to solve prog
 
 <center><img src="r2anki_sticker.png" alt="r2anki-sticker" width="150"></center>
 
-## Installing the package and Anki
+## Install the `r2anki`-package and Anki
 Clone the package and build yourself for now. Support for `devtools::install_github` is coming soon.
 
 Manual installation of Anki for now. Assisted by
@@ -17,7 +17,7 @@ Manual installation of Anki for now. Assisted by
 r2anki::install_anki()
 ```
 
-## Preparing Anki for use with r2anki-package
+## Prepare Anki for use with `r2anki`-package
 First add a "r2anki_pygments"-example card to anki, via impornt the "anki/r2anki_cardtype.apkg"-file. Assisted by
 
 ```
@@ -26,7 +26,7 @@ r2anki::initialize_anki()
 
 Important: When importing *.tsv-files into Anki later, make sure you check the "Allow HTML in fields" box. Also select (Note) Type "r2anki_pygments" for a nice markup.
 
-## Creating Flashcards and using them in Anki
+## Create Flashcards and use them in Anki
 An rmarkdown-Template was installed with this package. Create a new Rmd-file from Template, choose r2anki-Flashcard-Template and save the file to your preferred location.
 
 `r2anki::rmd2tsv("path/to/anki-template.Rmd")` will create a tsv-file ready for import into anki in the same folder as your source document.
