@@ -1,0 +1,106 @@
+---
+title: "An `r2anki`-Example for Timeseries"
+output:
+  html_document:
+    # "readable"
+    # "kate"
+    # "textmate"
+    theme: "flatly"
+    highlight: "pygments"
+    self_contained: false
+    toc: true
+    toc_depth: 4
+    toc_float: true
+knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = paste0(dirname(inputFile), '/example-ts.html')) })
+editor_options: 
+  chunk_output_type: console
+---
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE
+# ,fig.path = "images/"
+)
+#knitr::opts_knit$set(unnamed.chunk.label = 'fig')
+#knitr::opts_knit$set(unnamed.chunk.label = "la")
+
+library(magrittr)
+```
+
+This is an example file intended to demonstrate the use of the r2anki-package.
+
+<!-- Maybe add some id automatically -->
+*************************
+#### Create an xts-Object
+<!-- Tags: *additional tags for this specific card* -->
+**Create an `xts`-Timeseries with the values `1:5` for the past 5 days.**
+
+<!-- start backside --><br>
+```{r}
+xts1 <- xts::xts(x = 1:5, order.by = Sys.Date() - 0:4)
+```
+`xts` is used to create an xts object from raw data inputs.
+(Footnote: Input taken from Datacamp-Cheatsheet)
+<!-- end backside -->
+
+*****************************
+#### Generate a Time Sequence
+<!-- Tags: *additional tags for this specific card* -->
+**Generate a vector of 5 `Date`s, starting on January 1st, 2017.**
+
+<!-- start backside --><br>
+```{r}
+seq(as.Date("2017-01-01"), length = 5, by = "days")
+```
+<!-- end backside -->
+
+***********************
+#### Access Data and Timeindex of an `xts`-object
+<!-- Tags: *additional tags for this specific card* -->
+
+<!-- start backside --><br>
+```{r}
+zoo::coredata(xts1)
+zoo::index(xts1)
+```
+<!-- end backside -->
+
+***********************
+#### Remember a cool Quote about Prediction
+<!-- Tags: *additional tags for this specific card* -->
+**Who coined this famous phrase?**
+
+> It is difficult to make predictions, especially about the future.
+
+<!-- start backside --><br>
+Saying probably does not stem from Niels Bohr:<br>
+-> compare http://quoteinvestigator.com/2013/10/20/no-predict/
+<!-- end backside -->
+
+***********************
+#### Round the time-Index of your timeseries
+<!-- Tags: *additional tags for this specific card* -->
+**Round index to the next n=60 seconds**
+
+<!-- start backside --><br>
+```{r}
+xts::align.time(xts1, n = 60)
+```
+<!-- end backside -->
+***********************
+
+#### Reasons to use `xts` above `ts`-class
+<!-- Tags: *additional tags for this specific card* -->
+**Name a few reasons, why `xts` is a great package.**
+
+<!-- start backside --><br>
+
+* fast
+* robust
+    * cool
+(this is just a test-list)
+
+```{r echo=FALSE}
+plot((1:10)^2)
+```
+<!-- end backside -->
