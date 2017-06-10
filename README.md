@@ -7,9 +7,10 @@ When you learn and use *R* you need to memorize important commands to solve prog
 
 [Spaced repetition learning](https://en.wikipedia.org/wiki/Spaced_repetition) offers a solution to this problem by exposing you only to learning content, that you are about to forget. The `r2anki`-package can be used to easily convert RMarkdown-scripts into a set of Anki-flashcards, that can be shared among the commmunity.
 
+<center><img src="r2anki_sticker.png" alt="r2anki-sticker" style="width: 200px;"/></center>
+
 ## Installing the package
+tbd
 
 ## Using the package
-
-## Disclaimer
-Important note: **The `r2anki`-package is still in active development**
+tbd
