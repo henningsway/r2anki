@@ -12,7 +12,7 @@
 # how can i stably find the collections.media-folder?
 # library(magrittr)
 
-images2anki <- function(rmd_sourcefile, user,
+images2anki <- function(rmd_sourcefile, user = "User 1",
                         path_collections.media_folder = anki_dir(user),
                         delete_directory = FALSE) {
   path_to_images <- tools::file_path_sans_ext(rmd_sourcefile) %>%
