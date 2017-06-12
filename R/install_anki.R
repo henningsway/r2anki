@@ -5,9 +5,10 @@
 install_anki <- function() {
   cat("For now, please install Anki manually. Thank you! :)")
   browseURL("https://apps.ankiweb.net/#download")
-  if(is_windows())
+  if(is_windows()){
     if (!require("installr")) install.packages("installr")
     installr::install.URL("https://apps.ankiweb.net/downloads/current/anki-2.0.44.exe")  # use regexp to be immune to upcount in version-number
+  }
   else if (is_osx()) {
     message("osx download not implemented yet.")
   }
