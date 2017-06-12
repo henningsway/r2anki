@@ -12,8 +12,8 @@
 # how can i stably find the collections.media-folder?
 # library(magrittr)
 
-images2anki <- function(rmd_sourcefile,
-                        path_collections.media_folder = anki_dir(),
+images2anki <- function(rmd_sourcefile, user,
+                        path_collections.media_folder = anki_dir(user),
                         delete_directory = FALSE) {
   path_to_images <- tools::file_path_sans_ext(rmd_sourcefile) %>%
     paste0("_files/figure-html/")  #! make this more robust if possible
@@ -28,6 +28,7 @@ images2anki <- function(rmd_sourcefile,
     file.remove(path_to_images)
   }
 }
+
 
 ## Example arguments
 # src_test <- "inst/example-templates/testfile.Rmd"
