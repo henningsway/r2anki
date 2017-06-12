@@ -15,9 +15,7 @@ rmd2tsv <- function(rmd_sourcefile){
   # render the source to html and read in result
   knitr::opts_knit$set(unnamed.chunk.label = tools::file_path_sans_ext(rmd_sourcefile))
   rmarkdown::render(rmd_sourcefile)
-  html_srcfile <- sub(pattern = "(.*?)\\..*$",
-                      replacement = "\\1.html", rmd_sourcefile)
-      # i think, the above statement could also be done with basefile() now.
+  html_srcfile <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".html")
   lines_srcfile <- readLines(html_srcfile)
   file.remove(html_srcfile)
 
