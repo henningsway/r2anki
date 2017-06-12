@@ -25,8 +25,10 @@ rmd2tsv <- function(rmd_sourcefile){
   start_backside <- grep("<!-- start backside -->", lines_srcfile)
   end_backside <- grep("<!-- end backside -->", lines_srcfile)
 
+  # grep("<!-- start backside --><br>", lines_srcfile)  # not working yet
+
   ## collapse multiline input
-  frontside <- unlist(lapply(Map(seq, card + 1, start_backside - 1),
+  frontside <- unlist(lapply(Map(seq, card, start_backside - 1),
                          function(x) paste(lines_srcfile[x], collapse = "<br>")))
   backside <- unlist(lapply(Map(seq, start_backside + 1, end_backside),
                         function(x) paste(lines_srcfile[x], collapse = "<br>")))
@@ -39,7 +41,7 @@ rmd2tsv <- function(rmd_sourcefile){
   ## Combine in dataframe
   cards <- data.frame(frontside,
                    backside,
-                   id = lines_srcfile[card])
+                   id = lines_srcfile[card])  #paste0(html_srcfile, 1:length(fronside))
 
   ## Write to csv
   write.table(cards, sub(pattern = "(.*?)\\..*$", replacement = "\\1.tsv", rmd_sourcefile),
