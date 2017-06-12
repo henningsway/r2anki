@@ -13,7 +13,7 @@
 # library(magrittr)
 
 images2anki <- function(rmd_sourcefile,
-                        path_collections.media_folder,
+                        path_collections.media_folder = anki_dir(),
                         delete_directory = FALSE) {
   path_to_images <- tools::file_path_sans_ext(rmd_sourcefile) %>%
     paste0("_files/figure-html/")  #! make this more robust if possible
@@ -33,7 +33,6 @@ images2anki <- function(rmd_sourcefile,
 # src_test <- "inst/example-templates/testfile.Rmd"
 # c.m_test <- "inst/example-templates/test_collection.media/"
 # copy_images2anki(src_test, c.m_test)
-
 
 
 ## define variables to anki-folder
