@@ -1,6 +1,6 @@
 #' Parse an Rmd-`r2anki`-**Template** to csv (for Import into Anki).
 #'
-#' The goal of `parse2csv` is to compile an Anki-Rmd-Template.
+#' The goal of `parse2csv` is to compile an Anki-Rmd-Template. The name of the source-files should be uniqe across the collection, because the images will be named after the sourcefile and need to be unique within the anki-database.
 #'
 #' @param sourcefile path to `r2Anki`-Template
 #'
@@ -12,10 +12,8 @@
 #' @export
 
 rmd2tsv <- function(rmd_sourcefile){
-  require(tibble)  # where do I best put this requirement?
-                   # (and do i really need it?)
-
   # render the source to html and read in result
+  knitr::opts_knit$set(unnamed.chunk.label = tools::file_path_sans_ext(rmd_sourcefile))
   rmarkdown::render(rmd_sourcefile)
   html_srcfile <- sub(pattern = "(.*?)\\..*$",
                       replacement = "\\1.html", rmd_sourcefile)
