@@ -1,6 +1,6 @@
 #' General Function to enable the typical r2anki-workflow
 
-#' @param path_collections.media_folder Path to the Anki-template. Should be similar to `/home/usrname/.local/share/Anki2/User 1/collection.media/"`
+#' @param path_collections.media_folder Path to the Anki-template. Should be similar to `"/home/usrname/.local/share/Anki2/User 1/collection.media/"`
 #' @param invoke_anki Should Anki be started and the tsv imported? Defaults to `FALSE`
 #' @export
 r2anki <- function(rmd_sourcefile, path_collections.media_folder, invoke_anki = FALSE) {
