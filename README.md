@@ -1,5 +1,7 @@
 # Converting rmarkdown documents to anki flashcards (r2anki) <img src="man/figures/r2anki_sticker.png" height="200" align="right">
 
+[![Travis-CI Build Status](https://travis-ci.org/henningsway/r2anki.svg?branch=dev)](https://travis-ci.org/henningsway/r2anki)
+
 ## Effectively Remember R-Skills through Spaced Repetition Learning
 The `r2anki`-package offers an automated approach to bring notes from your favourite programming language (written in RMarkdown) to [Anki](https://ankisrs.net), a software for spaced repitition learning.
 
