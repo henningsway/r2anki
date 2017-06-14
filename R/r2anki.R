@@ -12,9 +12,8 @@ r2anki <- function(rmd_sourcefile, invoke_anki = FALSE, ...) {
   images2anki(tsv_file, ...)
   #! Should delete image folder per default. :)
 
-
-
-  message("tsv-file successfully created.")  # change message, also check if file exists
+  if (file.exists(tsv_file))
+  message("*** r2anki-Output created: ", tsv_file, " ***")
 
   ## invoke anki with tsv-created
   if (invoke_anki){

@@ -1,0 +1,47 @@
+---
+title: "A `r2anki`-Template-Example"
+output:
+  html_document:
+    # "readable"
+    # "kate"
+    # "textmate"
+    theme: "flatly"
+    highlight: "pygments"
+    self_contained: false
+    toc: true
+    toc_depth: 4
+    toc_float: true
+knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = paste0(dirname(inputFile), '/r2anki_example.html')) })
+editor_options: 
+  chunk_output_type: console
+---
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE
+# ,fig.path = "images/"
+)
+
+library(magrittr)
+```
+
+This is an example file intended to demonstrate the use of the r2anki-package.
+
+******************
+#### Title of Card
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### Title of Card
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+

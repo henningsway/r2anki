@@ -7,11 +7,6 @@
 #' @param delete_directory Should the image files be deleted after the copying?
 #' @seealso https://apps.ankiweb.net/docs/manual.html#files
 #' @importFrom magrittr %>%
-
-
-# how can i stably find the collections.media-folder?
-# library(magrittr)
-
 images2anki <- function(rmd_sourcefile, user = "User 1",
                         path_collections.media_folder = anki_dir(user),
                         delete_directory = FALSE) {
@@ -30,15 +25,11 @@ images2anki <- function(rmd_sourcefile, user = "User 1",
 }
 
 
-## Example arguments
-# src_test <- "inst/example-templates/testfile.Rmd"
-# c.m_test <- "inst/example-templates/test_collection.media/"
-# copy_images2anki(src_test, c.m_test)
-
-
-## define variables to anki-folder
-# inspired by blogdown:::bin_paths
-# should allow for custom path somehow
+#' Define Path-variables to Anki-folder
+#'
+#' Inspired by blogdown:::bin_paths.
+#' @keywords internal
+# Function should allow for custom path somehow.
 anki_dir <- function (user = "User 1"){
   if (is_windows()) {
     path <-  Sys.getenv("APPDATA", "")

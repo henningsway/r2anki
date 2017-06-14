@@ -2,10 +2,13 @@
 % Please edit documentation in R/tsv2anki.R
 \name{tsv2anki}
 \alias{tsv2anki}
-\title{Start Anki (on Linux) and import a *.tsv-file to your Collections}
+\title{Starts Anki and Imports the Specified *.tsv-file to Your Collection}
 \usage{
 tsv2anki(tsv_file)
 }
+\arguments{
+\item{tsv_file}{Path to the (*.tsv-)file you wish to import into Anki.}
+}
 \description{
-Start Anki (on Linux) and import a *.tsv-file to your Collections
+Currently only implemented for Linux systems, but the other operating systems will be supported soon. This Function requires an installation of Anki.
 }

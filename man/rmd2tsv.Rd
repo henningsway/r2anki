@@ -2,15 +2,17 @@
 % Please edit documentation in R/rmd2tsv.R
 \name{rmd2tsv}
 \alias{rmd2tsv}
-\title{Parse an Rmd-\code{r2anki}-\strong{Template} to csv (for Import into Anki).}
+\title{Parse an Rmd-\code{r2anki}-\strong{template} to tsv (for Import into Anki)}
 \usage{
-rmd2tsv(rmd_sourcefile)
+rmd2tsv(rmd_sourcefile, ...)
 }
 \arguments{
+\item{...}{Pass \code{quiet = TRUE} to \code{rmarkdown::render()} to suppress messages from pandoc comand line.}
+
 \item{sourcefile}{path to \code{r2Anki}-Template}
 }
 \description{
-The goal of \code{parse2csv} is to compile an Anki-Rmd-Template. The name of the source-files should be uniqe across the collection, because the images will be named after the sourcefile and need to be unique within the anki-database.
+The goal of \code{rmd2csv} is to compile an r2nki-Flashcard-Template. The output file is a tab-separed file. The name of the input-sourcefile should be uniqe across the collection, because the images in the Anki-cards will be named after the sourcefile and need to be unique within the Anki-database.
 }
 \examples{
 ## Define a Markdown-Template (read in from pkg-examples)

@@ -4,11 +4,12 @@
 \alias{shorten_imagelinks}
 \title{Shorten image-links in html as appropriate for Anki.}
 \usage{
-shorten_imagelinks(html_source2, rmd_sourcefile)
+shorten_imagelinks(html_source, rmd_sourcefile)
 }
 \description{
 The Function replaces and shortes <img> paths in the html code.
 It seems to be operating on the line level, so it needs to be called before
 the html-code is collapsed. It would be really nice, if I could call it
 after. Maybe I can, would there be a problem?
+@keywords internal
 }

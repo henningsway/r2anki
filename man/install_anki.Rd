@@ -2,10 +2,10 @@
 % Please edit documentation in R/install_anki.R
 \name{install_anki}
 \alias{install_anki}
-\title{Go to the Web and find yourself the up-to-date Anki-version for your OS.}
+\title{Go to the Web and Find Yourself the Up-to-date Anki-version for Your OS.}
 \usage{
 install_anki()
 }
 \description{
-This function will be substituted by a more automatic approach.
+For now this function opens https://apps.ankiweb.net/#download in your webbrowser, where you can then download the Anki-installer appropriate for your operating system. Please follow the (very simple) instructions on the Anki-webpage. This approach will be substituted by a more automatic approach in the near future.
 }

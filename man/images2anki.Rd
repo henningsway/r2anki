@@ -2,7 +2,7 @@
 % Please edit documentation in R/images2anki.R
 \name{images2anki}
 \alias{images2anki}
-\title{Copy images from the \code{sourcefile} to the Anki \code{collection.media} folder}
+\title{Copy Images from the \code{sourcefile} to the Anki \code{collection.Media}-Folder}
 \usage{
 images2anki(rmd_sourcefile, user = "User 1",
   path_collections.media_folder = anki_dir(user), delete_directory = FALSE)
@@ -15,7 +15,7 @@ images2anki(rmd_sourcefile, user = "User 1",
 \item{delete_directory}{Should the image files be deleted after the copying?}
 }
 \description{
-You will have to call this function, when you have images in your anki cards. When you see empty plots in your Anki-Cards you should copy the images over to the anki-collections.media-folder.
+You will have to call this function, when you have images in your anki cards. When you notice empty plots in your Anki-cards you should copy the images over to the anki-collections.media-folder.
 }
 \seealso{
 https://apps.ankiweb.net/docs/manual.html#files

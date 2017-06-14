@@ -2,7 +2,7 @@
 % Please edit documentation in R/r2anki.R
 \name{r2anki}
 \alias{r2anki}
-\title{General Function to enable the typical r2anki-workflow}
+\title{General Function to Enable the Typical \code{r2anki}-workflow}
 \usage{
 r2anki(rmd_sourcefile, invoke_anki = FALSE, ...)
 }
@@ -12,5 +12,5 @@ r2anki(rmd_sourcefile, invoke_anki = FALSE, ...)
 \item{path_collections.media_folder}{Path to the Anki-template. Should be similar to \code{"/home/usrname/.local/share/Anki2/User 1/collection.media/"}}
 }
 \description{
-General Function to enable the typical r2anki-workflow
+General Function to Enable the Typical \code{r2anki}-workflow
 }

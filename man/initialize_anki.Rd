@@ -2,10 +2,10 @@
 % Please edit documentation in R/initialize_anki.R
 \name{initialize_anki}
 \alias{initialize_anki}
-\title{Open an apgk-file in Anki which contains template card for r2anki-styling}
+\title{Open an apgk-file in Anki Which Contains Template Cards for appropriate r2anki-styling}
 \usage{
 initialize_anki()
 }
 \description{
-Open an apgk-file in Anki which contains template card for r2anki-styling
+Open an apgk-file in Anki Which Contains Template Cards for appropriate r2anki-styling
 }

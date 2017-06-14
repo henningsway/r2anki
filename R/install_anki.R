@@ -4,17 +4,19 @@
 #' @export
 install_anki <- function() {
   cat("For now, please install Anki manually. Thank you! :)")
-  utils::browseURL("https://apps.ankiweb.net/#download")
-  if(is_windows()){
-    # if (!require("installr")) install.packages("installr")
-    # installr::install.URL("https://apps.ankiweb.net/downloads/current/anki-2.0.44.exe")  # use regexp to be immune to upcount in version-number
-    message("Windows download not implemented yet.")
+  if (is_linux()) {
+    utils::browseURL("https://apps.ankiweb.net/#linux")
+    message("Linux download not implemented yet.")
   }
   else if (is_osx()) {
+    utils::browseURL("https://apps.ankiweb.net/#mac")
     message("OSX download not implemented yet.")
   }
-  else if (is_linux()) {
-    message("Linux download not implemented yet.")
+  else if(is_windows()){
+    # if (!require("installr")) install.packages("installr")
+    # installr::install.URL("https://apps.ankiweb.net/downloads/current/anki-2.0.44.exe")  # use regexp to be immune to upcount in version-number
+    utils::browseURL("https://apps.ankiweb.net/#windows")
+    message("Windows download not implemented yet.")
   }
 }
 

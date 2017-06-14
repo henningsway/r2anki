@@ -7,5 +7,5 @@
 addin_r2anki_flashcard()
 }
 \description{
-Call this function as an addin to insert a new flashcard at the cursor position.
+Call this function as an addin from RStudio to insert a new flashcard at the cursor position. \strong{Protipp}: Bind this function to a keyboard shortcut via Tools > Modify Keyboard Shortcuts. (Search for "addin" or "r2anki flashcard" to find the right functioncall.)
 }

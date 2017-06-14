@@ -1,16 +1,18 @@
-# Converting rmarkdown documents to anki flashcards (r2anki) <img src="man/figures/r2anki_sticker.png" height="200" align="right">
+# `r2anki` Easily Convert RMarkdown Documents into Anki Flashcards <img src="man/figures/r2anki_sticker.png" height="200" align="right">
 
 [![Travis-CI Build Status](https://travis-ci.org/henningsway/r2anki.svg?branch=dev)](https://travis-ci.org/henningsway/r2anki)
 
-## Effectively Remember R-Skills through Spaced Repetition Learning
-The `r2anki`-package offers an automated approach to bring notes from your favourite programming language (written in RMarkdown) to [Anki](https://ankisrs.net), a software for spaced repitition learning.
+## Effectively Acquire R-Skills through Spaced Repetition Learning
+The `r2anki`-package offers a streamlined approach to bring notes from your favourite programming language (written in RMarkdown) to [Anki](https://ankisrs.net), a software for spaced repitition learning.
 
 When you learn and use *R* you need to memorize important commands to solve programming tasks effectively. Unfortunately some less frequently used function calls can be forgot easily as you learn more about the language.
 
 [Spaced repetition learning](https://en.wikipedia.org/wiki/Spaced_repetition) offers a solution to this problem by exposing you only to learning content, that you are about to forget. The `r2anki`-package can be used to easily convert RMarkdown-scripts into a set of Anki-flashcards, that can be shared among the commmunity.
 
 ## Install the `r2anki`-package and Anki
-Clone the package and build yourself for now. Support for `devtools::install_github` is coming soon.
+```
+devtools::install_github("henningsway/r2anki")
+```
 
 Manual installation of Anki for now. Assisted by
 ```
@@ -18,7 +20,7 @@ r2anki::install_anki()
 ```
 
 ## Prepare Anki for use with `r2anki`-package
-First add a "r2anki_pygments"-example card to anki, via impornt the "anki/r2anki_cardtype.apkg"-file. Assisted by
+First add a "r2anki_pygments"-example card to anki, via import the "anki/r2anki_cardtype.apkg"-file. Assisted by
 
 ```
 r2anki::initialize_anki()

@@ -1,9 +1,9 @@
-#' Parse an Rmd-`r2anki`-**Template** to csv (for Import into Anki).
+#' Parse an Rmd-`r2anki`-**template** to tsv (for Import into Anki)
 #'
-#' The goal of `parse2csv` is to compile an Anki-Rmd-Template. The name of the source-files should be uniqe across the collection, because the images will be named after the sourcefile and need to be unique within the anki-database.
+#' The goal of `rmd2csv` is to compile an r2nki-Flashcard-Template. The output file is a tab-separed file. The name of the input-sourcefile should be uniqe across the collection, because the images in the Anki-cards will be named after the sourcefile and need to be unique within the Anki-database.
 #'
 #' @param sourcefile path to `r2Anki`-Template
-#'
+#' @param ... Pass `quiet = TRUE` to `rmarkdown::render()` to suppress messages from pandoc comand line.
 #' @examples
 #' ## Define a Markdown-Template (read in from pkg-examples)
 #' @author Henning Bumann, \email{h_b@@posteo.de}
@@ -11,66 +11,57 @@
 #' @seealso [addin_r2anki_flashcard]
 #' @export
 
-rmd2tsv <- function(rmd_sourcefile){
+rmd2tsv <- function(rmd_sourcefile, ...){
   # render the source to html and read in result
   knitr::opts_knit$set(unnamed.chunk.label = tools::file_path_sans_ext(rmd_sourcefile))
-  rmarkdown::render(rmd_sourcefile)
-  html_srcfile <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".html")
-  lines_srcfile <- readLines(html_srcfile)
-  file.remove(html_srcfile)
+  rmarkdown::render(rmd_sourcefile, ...)
+  html_file <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".html")
+  html_source <- readLines(html_file)
+  file.remove(html_file)
 
   # parse html
   ## get relevant line numbers
-  card <- grep("<h4>", lines_srcfile)
-  start_backside <- grep("<!-- start backside -->", lines_srcfile)
-  end_backside <- grep("<!-- end backside -->", lines_srcfile)
+  card <- grep("<h4>", html_source)
+  start_backside <- grep("<!-- start backside -->", html_source)
+  end_backside <- grep("<!-- end backside -->", html_source)
+  # tags <- parse_tags(html_source)
 
-  # grep("<!-- start backside --><br>", lines_srcfile)  # not working yet
+  # delete linebreak at beginning of backside, if necessary
+  # grep("<!-- start backside --><br>", html_source)  # not working yet
 
   ## collapse multiline input
   frontside <- unlist(lapply(Map(seq, card, start_backside - 1),
-                         function(x) paste(lines_srcfile[x], collapse = "<br>")))
+                         function(x) paste(html_source[x], collapse = "<br>")))
   backside <- unlist(lapply(Map(seq, start_backside + 1, end_backside),
-                        function(x) paste(lines_srcfile[x], collapse = "<br>")))
+                        function(x) paste(html_source[x], collapse = "<br>")))
 
-  ## shorten links to images
+  ## Shorten links to images
   frontside <- shorten_imagelinks(frontside, rmd_sourcefile)
-  backside  <- shorten_imagelinks(frontside, rmd_sourcefile)
+  backside  <- shorten_imagelinks(backside, rmd_sourcefile)
 
 
   ## Combine in dataframe
   cards <- data.frame(frontside,
                    backside,
-                   id = lines_srcfile[card])  #paste0(html_srcfile, 1:length(fronside))
+                   id = html_source[card])  # paste0(html_source, 1:length(fronside))
+                   #tags)
 
   ## Write to csv
-  write.table(cards, sub(pattern = "(.*?)\\..*$", replacement = "\\1.tsv", rmd_sourcefile),
+  utils::write.table(cards, sub(pattern = "(.*?)\\..*$", replacement = "\\1.tsv", rmd_sourcefile),
               sep = "\t",
               row.names = FALSE, col.names = FALSE,
               fileEncoding = "utf-8", quote = FALSE)
 }
 
-# parse2csv("examples/example_tasks.Rmd")
-
-# Should the image-moving be done per default?
-  # It would be nice and convenient (should be default), but the anki-media-
-  # collection-folder would have to be specified. The csv should also be
-  # generated, if no or a wrong path to the collection-folder has been
-  # specified.
-
 # length(start_backside) == length(end_backside)  # check, should be automated
 #  start_backside < card[-1]  # some checks, if some cards have just one side
   #! This actually seems important right now. :)
 
-# add print message, where the *.tsv-file can be found?
-# kann ich hier einen progress-bar einbauen?
-# add a variable for the file-path (default, same name, same directory)
 # add parsing for tags also
 # add some warnings to this file also.
 # add logic if either front or backside are missing (requires some thinking.)
   # (values need to be between the two values of the other ... else its missing or so)
 # Later: parse multiple files (concatanate these files)
-
 
 
 #'  Shorten image-links in html as appropriate for Anki.
@@ -79,17 +70,25 @@ rmd2tsv <- function(rmd_sourcefile){
 #'  It seems to be operating on the line level, so it needs to be called before
 #'  the html-code is collapsed. It would be really nice, if I could call it
 #'  after. Maybe I can, would there be a problem?
+#'  @keywords internal
 shorten_imagelinks <- function(html_source,
                                rmd_sourcefile) {
-  imagelinks <- html_source[grep("<img src=", html_source)]
-
-  old_path <- basename(rmd_sourcefile) %>%
+    old_path <- basename(rmd_sourcefile) %>%
     tools::file_path_sans_ext() %>%
     paste0("_files/figure-html/")  # could this be made more robust?
 
-  gsub(old_path, "", imagelinks)
+  gsub(old_path, "", html_source)
 }
 
-## Testing the function
+## Add tags to Your Anki-cards
 ##
+parse_tags <- function(html_source){
+  taglines <- grep("<!-- Tags:", html_source)  # extend this to allow global tags soon
+  tags <- html_source[taglines] %>%
+    gsub("<!-- Tags: \\*", "", .) %>%
+    gsub("\\* -->", "", .)
+  return(tags)
 
+  # If you want to add tag1 and tag2 to every line you’re importing, add the following to the top of the text file:
+  #   tags:tag1 tag2
+}
