@@ -1,19 +1,20 @@
-#' Go to the Web and find yourself the up-to-date Anki-version for your OS.
+#' Go to the Web and Find Yourself the Up-to-date Anki-version for Your OS.
 #'
-#' This function will be substituted by a more automatic approach.
+#' For now this function opens https://apps.ankiweb.net/#download in your webbrowser, where you can then download the Anki-installer appropriate for your operating system. Please follow the (very simple) instructions on the Anki-webpage. This approach will be substituted by a more automatic approach in the near future.
 #' @export
 install_anki <- function() {
   cat("For now, please install Anki manually. Thank you! :)")
-  browseURL("https://apps.ankiweb.net/#download")
+  utils::browseURL("https://apps.ankiweb.net/#download")
   if(is_windows()){
     # if (!require("installr")) install.packages("installr")
     # installr::install.URL("https://apps.ankiweb.net/downloads/current/anki-2.0.44.exe")  # use regexp to be immune to upcount in version-number
+    message("Windows download not implemented yet.")
   }
   else if (is_osx()) {
-    message("osx download not implemented yet.")
+    message("OSX download not implemented yet.")
   }
   else if (is_linux()) {
-    message("linux download not implemented yet.")
+    message("Linux download not implemented yet.")
   }
 }
 

@@ -1,6 +1,6 @@
-#' Copy images from the `sourcefile` to the Anki `collection.media` folder
+#' Copy Images from the `sourcefile` to the Anki `collection.Media`-Folder
 #'
-#' You will have to call this function, when you have images in your anki cards. When you see empty plots in your Anki-Cards you should copy the images over to the anki-collections.media-folder.
+#' You will have to call this function, when you have images in your anki cards. When you notice empty plots in your Anki-cards you should copy the images over to the anki-collections.media-folder.
 #'
 #' @param rmd_sourcefile Path to the rmd-template
 #' @param path_collections.media_folder Path to the Anki-template. Should be similar to /home/usrname/.local/share/Anki2/User 1/collection.media/"
