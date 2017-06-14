@@ -11,4 +11,7 @@ LazyData: true
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
 Imports:
-    magrittr
+    magrittr,
+    knitr,
+    rmarkdown,
+    rstudioapi
