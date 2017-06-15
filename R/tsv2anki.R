@@ -13,6 +13,7 @@ tsv2anki <- function(tsv_file) {
   }
   else if(is_windows()){
     # shell(shQuote("path/to/anki.exe"), wait = FALSE)
+    system2("C:\\Program Files (x86)\\Anki\\anki.exe", normalizePath(tsv_file), wait = FALSE)  # should allow flexible path to Anki (implement later)
     message("Not yet implemented for Windows.")
   }
 }
