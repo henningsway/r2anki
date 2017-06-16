@@ -11,7 +11,7 @@ When you learn and use *R* you need to memorize important commands to solve prog
 
 ## Install the `r2anki`-package and Anki
 ```
-devtools::install_github("henningsway/r2anki")
+devtools::install_github("henningsway/r2anki", rev = "dev")
 ```
 
 Manual installation of Anki for now. Assisted by
