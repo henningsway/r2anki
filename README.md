@@ -1,4 +1,4 @@
-# `r2anki` Easily Convert RMarkdown Documents into Anki Flashcards <img src="man/figures/r2anki_sticker.png" height="200" align="right">
+# Convert RMarkdown Documents into Anki Flashcards <img src="man/figures/r2anki_sticker.png" height="200" align="right">
 
 [![Travis-CI Build Status](https://travis-ci.org/henningsway/r2anki.svg?branch=dev)](https://travis-ci.org/henningsway/r2anki)
 
