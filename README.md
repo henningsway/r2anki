@@ -31,17 +31,10 @@ Important: When importing *.tsv-files into Anki later, make sure you check the "
 ## Create Flashcards and use them in Anki
 An rmarkdown-Template was installed with this package. Create a new Rmd-file from Template, choose r2anki-Flashcard-Template and save the file to your preferred location.
 
-`r2anki::rmd2tsv("path/to/anki-template.Rmd")` will create a tsv-file ready for import into anki in the same folder as your source document.
-
-If there are any pictures in the source, please also copy them to your anki-database. Pictures need to be put in the collections.media-folder for the correct user. On linux the path (with an up-to-date version of Anki) should look similar to this: "/home/usrname/.local/share/Anki2/User 1/collection.media/". More info can be found at: https://apps.ankiweb.net/docs/manual.html#file-locations
 ```
-r2anki::images2anki("path/to/anki-template.Rmd",
-                    "path/to/anki/collections.media_folder")
+r2anki::r2anki("path/to/anki-template.Rmd")
 ```
 
-These two steps can also be wrapped by the `r2anki()` command.
-```
-r2anki::r2anki("path/to/anki-template.Rmd",
-               "path/to/anki/collections.media_folder")
-```
+This will wrap two commands: `r2anki::rmd2tsv("path/to/anki-template.Rmd")` will create a tsv-file ready for import into anki in the same folder as your source document.
 
+If there are any pictures in the source, please also copy them to your anki-database. Pictures need to be put in the collections.media-folder for the correct user. On linux the path (with an up-to-date version of Anki) should look similar to this: "/home/usrname/.local/share/Anki2/User 1/collection.media/". More info can be found at: https://apps.ankiweb.net/docs/manual.html#file-locations. In `r2anki` this will be done via `images2anki()`.
