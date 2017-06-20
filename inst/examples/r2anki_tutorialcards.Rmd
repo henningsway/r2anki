@@ -28,7 +28,7 @@ library(magrittr)
 This is an example file intended to demonstrate the use of the r2anki-package.
 
 ******************
-#### Title of Card
+#### Install Anki
 <!-- Tags: *additional tags for this specific card* -->
 **<Describe the Task>**
 
@@ -37,7 +37,79 @@ This is an example file intended to demonstrate the use of the r2anki-package.
 <!-- end backside -->
 
 ******************
-#### Title of Card
+#### Set a Custom CSS
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### Create r2anki-Flashcard-Templates
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### Bind r2anki-Rstudio-Addin to your keyboard
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### Create a tab-separated file from your r2anki-Template
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### Copy images to your Anki-Collection
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### Import Anki-Flashcards into Anki
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### r2anki(): Do it all at once
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### Sudy with Anki
+<!-- Tags: *additional tags for this specific card* -->
+**<Describe the Task>**
+
+<!-- start backside --><br>
+<Answer the Task here.>
+<!-- end backside -->
+
+******************
+#### Star on Github and give feedback ;-)
 <!-- Tags: *additional tags for this specific card* -->
 **<Describe the Task>**
 

@@ -53,16 +53,6 @@ rmd2tsv <- function(rmd_sourcefile, ...){
               fileEncoding = "utf-8", quote = FALSE)
 }
 
-# length(start_backside) == length(end_backside)  # check, should be automated
-#  start_backside < card[-1]  # some checks, if some cards have just one side
-  #! This actually seems important right now. :)
-
-# add parsing for tags also
-# add some warnings to this file also.
-# add logic if either front or backside are missing (requires some thinking.)
-  # (values need to be between the two values of the other ... else its missing or so)
-# Later: parse multiple files (concatanate these files)
-
 
 #'  Shorten image-links in html as appropriate for Anki.
 #'
