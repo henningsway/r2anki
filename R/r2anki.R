@@ -17,6 +17,6 @@ r2anki <- function(rmd_sourcefile, invoke_anki = FALSE, ...) {
 
   ## invoke anki with tsv-created
   if (invoke_anki){
-    tsv2anki(tsv_file)
+    send_to_anki(tsv_file)
   }
 }
