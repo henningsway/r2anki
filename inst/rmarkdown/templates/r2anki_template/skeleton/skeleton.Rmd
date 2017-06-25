@@ -1,5 +1,5 @@
 ---
-title: "A `r2anki`-Template-Example"
+title: "An `r2anki`-Template-Example"
 output:
   html_document:
     # "readable"
