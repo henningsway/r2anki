@@ -7,5 +7,5 @@
 initialize_anki()
 }
 \description{
-Open an apgk-file in Anki Which Contains Template Cards for appropriate r2anki-styling
+Please import initialization file manually, if this function fails to find the *.apkg-file.
 }

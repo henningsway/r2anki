@@ -20,11 +20,27 @@ install_anki <- function() {
   }
 }
 
+### Ideas for linux-install-functions
+# utils::download.file()
+# utils::unzip()
+# utils::untar()
+# Sys.chmod()
+# Sys.which("anki")  # test if anki was sucesfulyy installed
+# tryCatch()  # ?!
+
+### Ideas for osx-install-functions
+# copy mounted file to hdd
+
+
+
 
 ## Find out operating-system, copyied from "blogdown"-pkg
-is_linux <- function ()
+is_linux <- function (){
   Sys.info()[["sysname"]] == "Linux"
-is_osx <- function ()
+}
+is_osx <- function (){
   Sys.info()[["sysname"]] == "Darwin"
-is_windows <- function ()
+}
+is_windows <- function (){
   .Platform$OS.type == "windows"
+}

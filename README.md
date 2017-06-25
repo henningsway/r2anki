@@ -2,7 +2,7 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/henningsway/r2anki.svg?branch=dev)](https://travis-ci.org/henningsway/r2anki)
 
-## Effectively Acquire R-Skills through Spaced Repetition Learning
+## Effectively learn *R* through Spaced Repetition
 The `r2anki`-package offers a streamlined approach to bring notes from your favourite programming language (written in RMarkdown) to [Anki](https://ankisrs.net), a software for spaced repitition learning.
 
 When you learn and use *R* you need to memorize important commands to solve programming tasks effectively. Unfortunately some less frequently used function calls can be forgot easily as you learn more about the language.

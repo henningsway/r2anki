@@ -11,7 +11,7 @@ output:
     toc: true
     toc_depth: 4
     toc_float: true
-knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = paste0(dirname(inputFile), '/example-ts.html')) })
+# knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = paste0(dirname(inputFile), '/example-ts.html')) })
 editor_options: 
   chunk_output_type: console
 ---
@@ -56,7 +56,7 @@ seq(as.Date("2017-01-01"), length = 5, by = "days")
 
 ***********************
 #### Access Data and Timeindex of an `xts`-object
-<!-- Tags: *additional tags for this specific card* -->
+<!-- Tags: *additional, tags, for this specific card* -->
 
 <!-- start backside --><br>
 ```{r}
