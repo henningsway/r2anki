@@ -43,7 +43,8 @@ rmd2tsv <- function(rmd_sourcefile, ...){
   ## Combine in dataframe
   cards <- data.frame(frontside,
                    backside,
-                   id = html_source[card])  # paste0(html_source, 1:length(fronside))
+                   id = html_source[card],
+                   stringsAsFactors = FALSE)  # paste0(html_source, 1:length(fronside))
                    #tags)
 
   ## Write to csv

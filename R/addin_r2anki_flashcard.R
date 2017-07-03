@@ -6,8 +6,8 @@
 addin_r2anki_flashcard <- function() {
   rstudioapi::insertText("******************
 #### Title of Card
-<!-- Tags: *additional tags for this specific card* -->
-**<Describe the Task>**
+<!-- #tags: additional tags for this specific card -->
+<Describe the Task>
 
 <!-- start backside --><br>
 <Answer the Task here.>
