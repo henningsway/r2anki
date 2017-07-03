@@ -1,106 +1,122 @@
 ---
-title: "An `r2anki`-Template-Example"
+title: "r2anki-Notebook: How to use r2anki"
 output:
   html_document:
-    # "readable"
-    # "kate"
-    # "textmate"
     theme: "flatly"
     highlight: "pygments"
-    self_contained: false
+    self_contained: false  # false, so that images can be exported to anki as well
     toc: true
     toc_depth: 4
     toc_float: true
-knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = paste0(dirname(inputFile), '/r2anki_example.html')) })
 editor_options: 
   chunk_output_type: console
 ---
 ```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE
-# ,fig.path = "images/"
-)
-#knitr::opts_knit$set(unnamed.chunk.label = 'fig')
-#knitr::opts_knit$set(unnamed.chunk.label = "la")
-
-library(magrittr)
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
-This is an example file intended to demonstrate the use of the r2anki-package.
+<!-- #globaltags:  add, global, tags here-->
 
-<!-- Maybe add some id automatically -->
-*************************
-#### Create an xts-Object
-<!-- Tags: *additional tags for this specific card* -->
-**Create an `xts`-Timeseries with the values `1:5` for the past 5 days.**
+# Working with r2anki
+This document demonstrates how you may use the r2anki-package. 
 
-<!-- start backside --><br>
-```{r}
-xts1 <- xts::xts(x = 1:5, order.by = Sys.Date() - 0:4)
-```
-`xts` is used to create an xts object from raw data inputs.
-(Footnote: Input taken from Datacamp-Cheatsheet)
-<!-- end backside -->
+To do this, a few Anki-cards are defined below, which you can import into Anki. If you do your homework there, you shouldn't easily forget how to work with this package any longer. ;-)
 
-*****************************
-#### Generate a Time Sequence
-<!-- Tags: *additional tags for this specific card* -->
-**Generate a vector of 5 `Date`s, starting on January 1st, 2017.**
+
+
+## General Information
+
+******************
+#### What is r2anki
+<!-- #tags:  -->
+**What can you use this package for?**
 
 <!-- start backside --><br>
-```{r}
-seq(as.Date("2017-01-01"), length = 5, by = "days")
-```
+r2anki brings R to [Anki](ankisrs.net/). It allows you to easily create Anki-cards with R Markdown in R, which you can than export to Anki. There you can study and rehearse the cards to effectively expand your R-vocabulary.
 <!-- end backside -->
 
-***********************
-#### Access Data and Timeindex of an `xts`-object
-<!-- Tags: *additional tags for this specific card* -->
+
+******************
+#### What is Spaced Repitition?
+<!-- #tags:  -->
+**Whats the idea behind it and why is it useful?**
 
 <!-- start backside --><br>
-```{r}
-zoo::coredata(xts1)
-zoo::index(xts1)
-```
+Spaced Repition is a *learning technique*, that helps you to learn and remember new knowledge effectively. It accounts for the fact, that well-know material needs to be rehearsed much less often than new material. Ideally the optimal time interval for every card is estimated individually, which is for example implemented in the Anki-algorithm.
+
+Learn more about [Spaced Repitition on Wikipedia](https://en.wikipedia.org/wiki/Spaced_repetition).
 <!-- end backside -->
 
-***********************
-#### Remember a cool Quote about Prediction
-<!-- Tags: *additional tags for this specific card* -->
-**Who coined this famous phrase?**
 
-> It is difficult to make predictions, especially about the future.
+## Necessary preparations (required only once)
+
+******************
+#### Requirements of Using r2anki
+<!-- #tags: ** -->
+**Which software do you need to install prior to using r2anki?**
 
 <!-- start backside --><br>
-Saying probably does not stem from Niels Bohr:<br>
--> compare http://quoteinvestigator.com/2013/10/20/no-predict/
+Because r2anki connects *R* to *Anki*. You need to have (*R* and) Anki installed. You should also import the r2anki-Notetype to Anki, so that the markup for the Anki-cards looks nice.
+
+`r2anki::install_anki()` is a little function to help get you started. :-)
 <!-- end backside -->
 
-***********************
-#### Round the time-Index of your timeseries
-<!-- Tags: *additional tags for this specific card* -->
-**Round index to the next n=60 seconds**
+******************
+#### r2anki-Initialization
+<!-- #tags: ** -->
+**When you first want to use r2anki, you need to initialize Anki**
+Why is this necessary and how do you do it?
 
 <!-- start backside --><br>
-```{r}
-xts::align.time(xts1, n = 60)
-```
+In Anki the styling of the cards is defined by "Note Types", which may contain html and CSS-information. `r2anki::r2anki(init = TRUE)` will copy a few Anki-cards with the r2anki-styling to Anki, so that the R Markdown-output can be rendered properly.
 <!-- end backside -->
-***********************
 
-#### Reasons to use `xts` above `ts`-class
-<!-- Tags: *additional tags for this specific card* -->
-**Name a few reasons, why `xts` is a great package.**
+## Working with r2anki
+
+******************
+#### How do you create your own r2anki-notebook?
+<!-- #tags:  -->
+
 
 <!-- start backside --><br>
+You can give yourself a headstart by using the R Markdown-Template, that comes with r2anki. You can also use the RStudio-addin to add a new card to your notebook.
 
-* fast
-* robust
-    * cool
-(this is just a test-list)
-
-```{r echo=FALSE}
-plot(AirPassengers)
-```
+Basically *any* R Markdown-file, that contains r2anki-cards (defined by a certain markup) can be parsed to an Anki-deck.
 <!-- end backside -->
+
+
+******************
+#### How do you export cards from an r2anki-notbook to Anki?
+<!-- #tags:  -->
+**How do you get your cards from the r2anki-notebook exported to Anki?**
+
+<!-- start backside --><br>
+You just save the r2anki-notebook and call `r2anki::r2anki()` on the Rmd-file. When you set `invoke_anki = TRUE` Anki will automatically be started, ready to import your cards.
+<!-- end backside -->
+
+
+******************
+#### How to import r2anki-cards into Anki
+<!-- Tags:  -->
+**What should be kept in mind to ensure a sucessful import of r2anki-cards?**
+
+<!-- start backside --><br>
+Please make sure to
+
+- choose r2anki as the Note-Type of the Anki-cards
+- check that Anki correctly recognises the file as tab seperated (manually enter \t otherwise)
+- check the box "Allow HTML in fields", so that the cards are recognized as containing html-markup
+<!-- end backside -->
+
+
+
+
+******************
+#### Where can you look for other r2anki-decks?
+<!-- #tags:  -->
+**Writing cards seems take some effort. Where can I find existing r2nki-decks?**
+
+<!-- start backside --><br>
+Take a look at https://github.com/henningsway/r2anki-notebooks. Please consider providing the cards you wrote to other users as well. Thank you! :) 
+<!-- end backside -->
+
