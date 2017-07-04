@@ -15,6 +15,7 @@ devtools::install_github("henningsway/r2anki")
 ```
 
 Manual installation of Anki for now. Assisted by
+
 ```
 r2anki::install_anki()
 ```
@@ -34,25 +35,24 @@ You may freely use *R Markdown* while creating your Anki-cards. A few *tags* def
 There are 
 * `#### ` [*required*] precedes the title of your Anki-card (should be unique across your collection)
 * `<!-- start backside -->` [*required*] defines the start of the *answer*.
-* `<!-- end backside -->` [*required*]
+* `<!-- end backside -->` [*required*] defines the start of the *answer*.
 
-Tags are *optional* and can be defined for all cards of one notebook as well as for individual cards.
+<!-- Tags are *optional* and can be defined for all cards of one notebook as well as for individual cards. -->
 
-* `<!-- #globaltags:  -->` The (outcommented) line  `<!-- # globaltags:  -->` is the place, where you can define some tags for your Anki-cards. These will then be added to all Anki-cards, which are described in this notebook. Multiple words per tag are allowed. Seperate individual tags per `,`.
-* `<!-- #tags: -->` allows to define tags on the card-level. Seperate by `,`.
+<!-- * `<!-- #globaltags:  -->` The (outcommented) line  `<!-- # globaltags:  -->` is the place, where you can define some tags for your Anki-cards. These will then be added to all Anki-cards, which are described in this notebook. Multiple words per tag are allowed. Seperate individual tags per `,`. -->
+<!-- * `<!-- #tags: -->` allows to define tags on the card-level. Seperate by `,`. -->
 
 Feel free to try the addin(*Tools > Addins > Insert r2anki-flashcard*), when noting down a new card.
 
-An r2anki-R-Markdown-template was installed with this package. Create a new Rmd-file, choose r2anki-flashcard-template and save the file to your preferred location.
+An *r2anki-R-Markdown-template* was installed with this package. Create a new Rmd-file, choose r2anki-flashcard-template and save the file to your preferred location.
 
 
 ## Exporting your r2anki-cards to Anki
-To transform your r2anki-notebook into Anki-cards, please save this document (e.g. *r2anki_file.Rmd* in your current working direcctory) and call `r2anki("r2anki_demo.Rmd")`. 
+To transform your r2anki-notebook into Anki-cards, please save this document (ideally in your current working directory) and call 
 
 ```
-r2anki::r2anki("path/to/r2anki_file.Rmd")
+r2anki::r2anki("r2anki_file.Rmd")
 ```
 
 <!-- ### Other Informations-->
 <!-- "/home/usrname/.local/share/Anki2/User 1/collection.media/". More info can be found at: https://apps.ankiweb.net/docs/manual.html#file-locations.-->
-
