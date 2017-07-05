@@ -9,7 +9,7 @@ addin_r2anki_flashcard <- function() {
 <!-- #tags: additional tags for this specific card -->
 <Describe the Task>
 
-<!-- start backside --><br>
+<!-- start backside -->
 <Answer the Task here.>
 <!-- end backside -->
 

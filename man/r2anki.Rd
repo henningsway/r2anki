@@ -2,15 +2,15 @@
 % Please edit documentation in R/r2anki.R
 \name{r2anki}
 \alias{r2anki}
-\title{General Function to Enable the Typical \code{r2anki}-workflow}
+\title{Main Function to Export r2anki-notebooks to Anki.}
 \usage{
-r2anki(rmd_sourcefile, invoke_anki = FALSE, ...)
+r2anki(rmd_sourcefile, invoke_anki = FALSE, init = FALSE, ...)
 }
 \arguments{
-\item{invoke_anki}{Should Anki be started and the tsv imported? Defaults to \code{FALSE}}
+\item{rmd_sourcefile}{Path to R Markdown document to be parsed and exported to Anki.}
 
-\item{path_collections.media_folder}{Path to the Anki-template. Should be similar to \code{"/home/usrname/.local/share/Anki2/User 1/collection.media/"}}
+\item{invoke_anki}{Should Anki be started and the tsv imported? Defaults to \code{FALSE}}
 }
 \description{
-General Function to Enable the Typical \code{r2anki}-workflow
+Main Function to Export r2anki-notebooks to Anki.
 }
