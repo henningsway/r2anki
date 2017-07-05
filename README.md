@@ -41,11 +41,6 @@ There are
 * `<!-- start backside -->` [*required*] defines the start of the *answer*.
 * `<!-- end backside -->` [*required*] defines the start of the *answer*.
 
-<!-- Tags are *optional* and can be defined for all cards of one notebook as well as for individual cards. -->
-
-<!-- * `<!-- #globaltags:  -->` The (outcommented) line  `<!-- # globaltags:  -->` is the place, where you can define some tags for your Anki-cards. These will then be added to all Anki-cards, which are described in this notebook. Multiple words per tag are allowed. Seperate individual tags per `,`. -->
-<!-- * `<!-- #tags: -->` allows to define tags on the card-level. Seperate by `,`. -->
-
 Feel free to try the addin(*Tools > Addins > Insert r2anki-flashcard*), when noting down a new card.
 
 An *r2anki-R-Markdown-template* was installed with this package. Create a new Rmd-file, choose r2anki-flashcard-template and save the file to your preferred location.
