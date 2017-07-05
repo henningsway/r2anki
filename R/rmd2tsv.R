@@ -26,14 +26,11 @@ rmd2tsv <- function(rmd_sourcefile, ...){
   end_backside <- grep("<!-- end backside -->", html_source)
   # tags <- parse_tags(html_source)
 
-  # delete linebreak at beginning of backside, if necessary
-  # grep("<!-- start backside --><br>", html_source)  # not working yet
-
   ## collapse multiline input
   frontside <- unlist(lapply(Map(seq, card, start_backside - 1),
-                         function(x) paste(html_source[x], collapse = "<br>")))
+                         function(x) paste(html_source[x], collapse = "")))
   backside <- unlist(lapply(Map(seq, start_backside + 1, end_backside),
-                        function(x) paste(html_source[x], collapse = "<br>")))
+                        function(x) paste(html_source[x], collapse = "")))
 
   ## Shorten links to images
   frontside <- shorten_imagelinks(frontside, rmd_sourcefile)

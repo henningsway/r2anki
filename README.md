@@ -27,7 +27,11 @@ First add a "r2anki"-example card to anki, via import the "anki/r2anki_cardtype.
 r2anki::r2anki(init = TRUE)
 ```
 
-**Important:** When importing *.tsv-files into Anki later, make sure you check the "Allow HTML in fields" box. Also select (Note) Type "r2anki" for a nice markup.
+(When importing *.tsv-files into Anki later, make sure you check the "Allow HTML in fields" box. Also select (Note) Type "r2anki" for a nice markup.)
+
+**Possible Workaroundd:** Should there be any problems related to the initialization (due to some recent changes), please import the `r2anki.apkg`-file manually into Anki. (Ctrl + I opens the shortcut)
+[Link to r2anki.apkg](https://github.com/henningsway/r2anki/blob/master/inst/anki/r2anki.apkg)
+
 
 ## Create Anki Cards (and what to look out for)
 You may freely use *R Markdown* while creating your Anki-cards. A few *tags* define aspects of the r2anki-cards and should be used with care (otherwise the parser will be confused). These are:

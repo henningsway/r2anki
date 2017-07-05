@@ -23,7 +23,6 @@ This document demonstrates how you may use the r2anki-package.
 To do this, a few Anki-cards are defined below, which you can import into Anki. If you do your homework there, you shouldn't easily forget how to work with this package any longer. ;-)
 
 
-
 ## General Information
 
 ******************
@@ -31,7 +30,7 @@ To do this, a few Anki-cards are defined below, which you can import into Anki. 
 <!-- #tags:  -->
 **What can you use this package for?**
 
-<!-- start backside --><br>
+<!-- start backside -->
 r2anki brings R to [Anki](ankisrs.net/). It allows you to easily create Anki-cards with R Markdown in R, which you can than export to Anki. There you can study and rehearse the cards to effectively expand your R-vocabulary.
 <!-- end backside -->
 
@@ -41,7 +40,7 @@ r2anki brings R to [Anki](ankisrs.net/). It allows you to easily create Anki-car
 <!-- #tags:  -->
 **Whats the idea behind it and why is it useful?**
 
-<!-- start backside --><br>
+<!-- start backside -->
 Spaced Repition is a *learning technique*, that helps you to learn and remember new knowledge effectively. It accounts for the fact, that well-know material needs to be rehearsed much less often than new material. Ideally the optimal time interval for every card is estimated individually, which is for example implemented in the Anki-algorithm.
 
 Learn more about [Spaced Repitition on Wikipedia](https://en.wikipedia.org/wiki/Spaced_repetition).
@@ -55,7 +54,7 @@ Learn more about [Spaced Repitition on Wikipedia](https://en.wikipedia.org/wiki/
 <!-- #tags: ** -->
 **Which software do you need to install prior to using r2anki?**
 
-<!-- start backside --><br>
+<!-- start backside -->
 Because r2anki connects *R* to *Anki*. You need to have (*R* and) Anki installed. You should also import the r2anki-Notetype to Anki, so that the markup for the Anki-cards looks nice.
 
 `r2anki::install_anki()` is a little function to help get you started. :-)
@@ -67,7 +66,7 @@ Because r2anki connects *R* to *Anki*. You need to have (*R* and) Anki installed
 **When you first want to use r2anki, you need to initialize Anki**
 Why is this necessary and how do you do it?
 
-<!-- start backside --><br>
+<!-- start backside -->
 In Anki the styling of the cards is defined by "Note Types", which may contain html and CSS-information. `r2anki::r2anki(init = TRUE)` will copy a few Anki-cards with the r2anki-styling to Anki, so that the R Markdown-output can be rendered properly.
 <!-- end backside -->
 
@@ -78,7 +77,7 @@ In Anki the styling of the cards is defined by "Note Types", which may contain h
 <!-- #tags:  -->
 
 
-<!-- start backside --><br>
+<!-- start backside -->
 You can give yourself a headstart by using the R Markdown-Template, that comes with r2anki. You can also use the RStudio-addin to add a new card to your notebook.
 
 Basically *any* R Markdown-file, that contains r2anki-cards (defined by a certain markup) can be parsed to an Anki-deck.
@@ -90,7 +89,7 @@ Basically *any* R Markdown-file, that contains r2anki-cards (defined by a certai
 <!-- #tags:  -->
 **How do you get your cards from the r2anki-notebook exported to Anki?**
 
-<!-- start backside --><br>
+<!-- start backside -->
 You just save the r2anki-notebook and call `r2anki::r2anki()` on the Rmd-file. When you set `invoke_anki = TRUE` Anki will automatically be started, ready to import your cards.
 <!-- end backside -->
 
@@ -100,7 +99,7 @@ You just save the r2anki-notebook and call `r2anki::r2anki()` on the Rmd-file. W
 <!-- Tags:  -->
 **What should be kept in mind to ensure a sucessful import of r2anki-cards?**
 
-<!-- start backside --><br>
+<!-- start backside -->
 Please make sure to
 
 - choose r2anki as the Note-Type of the Anki-cards
@@ -116,7 +115,7 @@ Please make sure to
 <!-- #tags:  -->
 **Writing cards seems take some effort. Where can I find existing r2nki-decks?**
 
-<!-- start backside --><br>
+<!-- start backside -->
 Take a look at https://github.com/henningsway/r2anki-notebooks. Please consider providing the cards you wrote to other users as well. Thank you! :) 
 <!-- end backside -->
 
