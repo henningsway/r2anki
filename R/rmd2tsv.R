@@ -1,6 +1,6 @@
-#' Parse an Rmd-`r2anki`-**template** to tsv (for Import into Anki)
+#' Parse an `r2anki`-RMarkdown-script to tsv (for import into Anki)
 #'
-#' The goal of `rmd2csv` is to compile an r2nki-Flashcard-Template. The output file is a tab-separed file. The name of the input-sourcefile should be uniqe across the collection, because the images in the Anki-cards will be named after the sourcefile and need to be unique within the Anki-database.
+#' The goal of `rmd2tsv` is to compile an r2nki-flashcard-Template. The output file is a tab-separed file. The name of the input-sourcefile should be uniqe across the collection, because the images in the Anki-cards will be named after the sourcefile and need to be unique within the Anki-database.
 #'
 #' @param sourcefile path to `r2Anki`-Template
 #' @param ... Pass `quiet = TRUE` to `rmarkdown::render()` to suppress messages from pandoc comand line.
