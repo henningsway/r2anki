@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmd2tsv.R
 \name{rmd2tsv}
 \alias{rmd2tsv}
-\title{Parse an Rmd-\code{r2anki}-\strong{template} to tsv (for Import into Anki)}
+\title{Parse an \code{r2anki}-RMarkdown-script to tsv (for import into Anki)}
 \usage{
 rmd2tsv(rmd_sourcefile, ...)
 }
@@ -12,7 +12,7 @@ rmd2tsv(rmd_sourcefile, ...)
 \item{sourcefile}{path to \code{r2Anki}-Template}
 }
 \description{
-The goal of \code{rmd2csv} is to compile an r2nki-Flashcard-Template. The output file is a tab-separed file. The name of the input-sourcefile should be uniqe across the collection, because the images in the Anki-cards will be named after the sourcefile and need to be unique within the Anki-database.
+The goal of \code{rmd2tsv} is to compile an r2nki-flashcard-Template. The output file is a tab-separed file. The name of the input-sourcefile should be uniqe across the collection, because the images in the Anki-cards will be named after the sourcefile and need to be unique within the Anki-database.
 }
 \examples{
 ## Define a Markdown-Template (read in from pkg-examples)

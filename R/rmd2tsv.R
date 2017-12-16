@@ -1,6 +1,6 @@
-#' Parse an Rmd-`r2anki`-**template** to tsv (for Import into Anki)
+#' Parse an `r2anki`-RMarkdown-script to tsv (for import into Anki)
 #'
-#' The goal of `rmd2csv` is to compile an r2nki-Flashcard-Template. The output file is a tab-separed file. The name of the input-sourcefile should be uniqe across the collection, because the images in the Anki-cards will be named after the sourcefile and need to be unique within the Anki-database.
+#' The goal of `rmd2tsv` is to compile an r2nki-flashcard-Template. The output file is a tab-separed file. The name of the input-sourcefile should be uniqe across the collection, because the images in the Anki-cards will be named after the sourcefile and need to be unique within the Anki-database.
 #'
 #' @param sourcefile path to `r2Anki`-Template
 #' @param ... Pass `quiet = TRUE` to `rmarkdown::render()` to suppress messages from pandoc comand line.
@@ -14,8 +14,8 @@
 rmd2tsv <- function(rmd_sourcefile, ...){
   # render the source to html and read in result
   knitr::opts_knit$set(unnamed.chunk.label = tools::file_path_sans_ext(rmd_sourcefile))
-  rmarkdown::render(rmd_sourcefile, ...)
-  html_file <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".html")
+  rmarkdown::render(rmd_sourcefile, ...)  # TODO: work on tempdir feature, output_dir = tempdir()
+  html_file <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".html")  # TODO: debug for underscore names
   html_source <- readLines(html_file)
   file.remove(html_file)
 
@@ -26,16 +26,16 @@ rmd2tsv <- function(rmd_sourcefile, ...){
   end_backside <- grep("<!-- end backside -->", html_source)
   # tags <- parse_tags(html_source)
 
-  ## collapse multiline input
+  ## Collapse multiline input
+  # TODO: possibly refactor to map_dbl for type stability
   frontside <- unlist(lapply(Map(seq, card, start_backside - 1),
-                         function(x) paste(html_source[x], collapse = "")))
+                         function(x) paste(html_source[x] , collapse = "<br>")))
   backside <- unlist(lapply(Map(seq, start_backside + 1, end_backside),
-                        function(x) paste(html_source[x], collapse = "")))
+                        function(x) paste(html_source[x], collapse = "<br>")))
 
   ## Shorten links to images
   frontside <- shorten_imagelinks(frontside, rmd_sourcefile)
   backside  <- shorten_imagelinks(backside, rmd_sourcefile)
-
 
   ## Combine in dataframe
   cards <- data.frame(frontside,
@@ -45,7 +45,7 @@ rmd2tsv <- function(rmd_sourcefile, ...){
                    #tags)
 
   ## Write to csv
-  utils::write.table(cards, sub(pattern = "(.*?)\\..*$", replacement = "\\1.tsv", rmd_sourcefile),
+  utils::write.table(cards, paste0(tools::file_path_sans_ext(rmd_sourcefile), ".tsv"),
               sep = "\t",
               row.names = FALSE, col.names = FALSE,
               fileEncoding = "utf-8", quote = FALSE)
@@ -65,7 +65,7 @@ shorten_imagelinks <- function(html_source,
     tools::file_path_sans_ext() %>%
     paste0("_files/figure-html/")  # could this be made more robust?
 
-  gsub(old_path, "", html_source)
+    gsub(old_path, "", html_source)
 }
 
 ## Add tags to Your Anki-cards

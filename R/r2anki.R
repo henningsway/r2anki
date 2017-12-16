@@ -8,17 +8,17 @@ r2anki <- function(rmd_sourcefile, invoke_anki = FALSE, init = FALSE, ...) {
     initialize_anki()
   } else {
     # create tsv
-    rmd2tsv(rmd_sourcefile)
-
-    # copy images to anki
-    tsv_file <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".tsv")
-    images2anki(tsv_file, ...)
-    #! Should delete image folder per default.
+    rmd2tsv(rmd_sourcefile, ...)
 
     if (file.exists(tsv_file))
       message("*** r2anki-Output created: ", tsv_file, " ***")
 
-    ## invoke anki with tsv-created
+    # Copy images to anki
+    tsv_file <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".tsv")
+    images2anki(tsv_file, ...)
+    #! Should delete image folder per default.
+
+    ## Invoke anki with tsv-created
     if (invoke_anki){
       send_to_anki(tsv_file)
     }
