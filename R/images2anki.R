@@ -14,13 +14,15 @@ images2anki <- function(rmd_sourcefile, user = "User 1",
     paste0("_files/figure-html/")  #! make this more robust if possible
     # knitr::opts_chunk$set(fig.path = "images/")
 
-  list.files(path_to_images) %>%
-    paste0(path_to_images, .) %>%
-    file.copy(path_collections.media_folder)
+  if(dir.exists(path_to_images)){  # TODO: maybe move to r2anki, before this function is called
+    list.files(path_to_images, full.names = TRUE) %>%
+      # paste0(path_to_images, .) %>%  # shorten relative files
+      file.copy(path_collections.media_folder)
 
-  if (delete_directory) {
-    ## delete source and folders
-    file.remove(path_to_images)
+    if (delete_directory) {
+      ## delete source and folders
+      file.remove(path_to_images)
+    }
   }
 }
 
