@@ -2,3 +2,8 @@ Name: Insert r2anki-flashcard
 Description: Insert a new flashcard at the cursor position. (Addin)
 Binding: addin_r2anki_flashcard
 Interactive: false
+
+Name: Insert a (timebased) card-id
+Description: This may help to update cards in Anki, while changing titles. (Addin)
+Binding: addin_insert_cardid
+Interactive: false

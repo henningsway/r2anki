@@ -15,3 +15,13 @@ addin_r2anki_flashcard <- function() {
 
 ")
 }
+
+
+#' Playing around with timebased card-ids
+#'
+#' @export
+addin_insert_cardid <- function(){
+  rstudioapi::insertText(
+    paste0("<!-- card-id: ", Sys.time(), " -->")  # maybe use date() instead
+  )
+}
