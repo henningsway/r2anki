@@ -16,3 +16,5 @@ Imports:
     rmarkdown,
     rstudioapi,
     stringr (>= 1.2.0)
+Suggests: 
+    testthat
