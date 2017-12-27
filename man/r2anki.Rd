@@ -4,7 +4,8 @@
 \alias{r2anki}
 \title{Main Function to Export r2anki-notebooks to Anki.}
 \usage{
-r2anki(rmd_sourcefile, invoke_anki = FALSE, init = FALSE, ...)
+r2anki(rmd_sourcefile, invoke_anki = FALSE, init = FALSE,
+  slim_file = TRUE, ...)
 }
 \arguments{
 \item{rmd_sourcefile}{Path to R Markdown document to be parsed and exported to Anki.}
