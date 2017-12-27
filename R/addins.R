@@ -37,7 +37,9 @@ initialize_counter <- function(i = 0){
     get_max_cardid()
 
   # create counter and assign to global environment
-  .increase_cardid <<- create_counter(startvalue)
+  counter <- create_counter(startvalue)
+  attr(counter, "file_id") <- current_editor_file_id()
+  .increase_cardid <<- counter
 }
 
 #' Insert a filebased card-id
