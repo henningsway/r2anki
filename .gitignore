@@ -5,3 +5,5 @@
 *.html
 *.tsv
 *_files/
+test_ankiscripts
+todo_notes.md
