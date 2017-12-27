@@ -4,9 +4,10 @@
 #'
 #' @export
 addin_r2anki_flashcard <- function() {
-  rstudioapi::insertText("******************
-#### Title of Card
-<!-- #tags: additional tags for this specific card -->
+  rstudioapi::insertText(paste0("******************
+#### Title of Card\n",
+create_card_id(),
+"\n<!-- #tags: additional tags for this specific card -->
 <Describe the Task>
 
 <!-- start backside -->
@@ -14,14 +15,35 @@ addin_r2anki_flashcard <- function() {
 <!-- end backside -->
 
 ")
+)
 }
 
-
-#' Playing around with timebased card-ids
+#' Create an `.increase_cardid`-function, with a prespecified startpoint
 #'
-#' @export
-addin_insert_cardid <- function(){
-  rstudioapi::insertText(
-    paste0("<!-- card-id: ", Sys.time(), " -->")  # maybe use date() instead
-  )
+initialize_counter <- function(i = 0){
+  # "Code Factory" to create Counter
+  create_counter <- function(i){
+    function() {
+      i <<- i + 1
+      i
+    }
+  }
+
+  # Finding the right startvalue for the counter
+  rstudioapi::documentSave(id = current_editor_file_id()) %>%
+    invisible()  # Save active document in editor
+
+  startvalue <- current_editor_file() %>%
+    get_max_cardid()
+
+  # create counter and assign to global environment
+  .increase_cardid <<- create_counter(startvalue)
 }
+
+#' Insert a filebased card-id
+#'
+addin_insert_cardid <- function(){
+  card_id <- create_card_id()
+  rstudioapi::insertText(card_id)
+}
+

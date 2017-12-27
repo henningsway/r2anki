@@ -3,7 +3,12 @@ Description: Insert a new flashcard at the cursor position. (Addin)
 Binding: addin_r2anki_flashcard
 Interactive: false
 
-Name: Insert a (timebased) card-id
-Description: This may help to update cards in Anki, while changing titles. (Addin)
+Name: Initialize card-id counter
+Description: Initialize counter to start with a value different from 0.
+Binding: initialize_counter
+Interactive: false
+
+Name: Insert a card-id at cursor position
+Description: Creates a unique identifier for an r2anki-card based on the name of the current file.
 Binding: addin_insert_cardid
 Interactive: false
