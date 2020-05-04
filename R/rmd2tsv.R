@@ -10,7 +10,6 @@
 #' @references https://en.wikipedia.org/wiki/Spaced_repetition
 #' @seealso [addin_r2anki_flashcard]
 #' @export
-
 rmd2tsv <- function(rmd_sourcefile, ...){
   # render the source to html and read in result
   knitr::opts_knit$set(unnamed.chunk.label = tools::file_path_sans_ext(rmd_sourcefile))
@@ -50,6 +49,60 @@ rmd2tsv <- function(rmd_sourcefile, ...){
               row.names = FALSE, col.names = FALSE,
               fileEncoding = "utf-8", quote = FALSE)
 }
+
+
+
+#' Second implementation
+#'
+#' @export
+rmd2tsv_slim <- function(rmd_sourcefile, ...){
+  # render the source to html and read in result
+  knitr::opts_knit$set(unnamed.chunk.label = tools::file_path_sans_ext(rmd_sourcefile))
+  rmarkdown::render(rmd_sourcefile, ...)  # TODO: work on tempdir feature, output_dir = tempdir()
+  html_file <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".html")  # TODO: debug for underscore names
+  html_source <- readLines(html_file)
+  file.remove(html_file)
+
+  # parse html
+  ## get relevant line numbers
+  # TODO: Merge this part with the rmd2tsv-functionality....
+  frontside <- grep("<h4>", html_source)  # TODO: check, that frontside is indeed nonempty integer
+
+  start_backside <- frontside + 1
+
+  div <- grep("</div>", html_source)  # helper calculations
+  last_backside <- min(div[div > max(frontside)])
+
+  end_backside <- c(frontside[-1] - 3, max(frontside) + last_backside)
+
+  # tags <- parse_tags(html_source)
+
+  ## Collapse multiline input
+  backside <- unlist(lapply(Map(seq, start_backside, end_backside),  # removed a +1 here
+                            function(x) paste(html_source[x], collapse = "")))
+
+  ## Shorten links to images
+  #frontside <- shorten_imagelinks(frontside, rmd_sourcefile)
+  backside  <- shorten_imagelinks(backside, rmd_sourcefile)
+
+  ## Combine in dataframe
+  cards <- data.frame(html_source[frontside],
+                      backside,
+                      id = html_source[frontside],
+                      stringsAsFactors = FALSE)  # paste0(html_source, 1:length(fronside))
+  #tags)
+
+  ## Write to csv
+  # if(nrow(frontside) >= 1){# do som kine of check here}
+  utils::write.table(cards, paste0(tools::file_path_sans_ext(rmd_sourcefile), ".tsv"),
+                     sep = "\t",
+                     row.names = FALSE, col.names = FALSE,
+                     fileEncoding = "utf-8", quote = FALSE)
+}
+
+
+
+
 
 
 #'  Shorten image-links in html as appropriate for Anki.

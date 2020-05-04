@@ -3,18 +3,22 @@
 #' @param rmd_sourcefile Path to R Markdown document to be parsed and exported to Anki.
 #' @param invoke_anki Should Anki be started and the tsv imported? Defaults to `FALSE`
 #' @export
-r2anki <- function(rmd_sourcefile, invoke_anki = FALSE, init = FALSE, ...) {
+r2anki <- function(rmd_sourcefile, invoke_anki = FALSE, init = FALSE, slim_file = TRUE, ...) {
   if(init){
     initialize_anki()
   } else {
     # create tsv
-    rmd2tsv(rmd_sourcefile, ...)
-
-    if (file.exists(tsv_file))
-      message("*** r2anki-Output created: ", tsv_file, " ***")
+    # TODO: improve quality of code...
+    if (slim_file){
+      rmd2tsv_slim(rmd_sourcefile, ...)
+    } else {
+      rmd2tsv(rmd_sourcefile, ...)
+    }
 
     # Copy images to anki
     tsv_file <- paste0(tools::file_path_sans_ext(rmd_sourcefile), ".tsv")
+    if (file.exists(tsv_file))
+      message("*** Working with ", tsv_file, " ***")
     images2anki(tsv_file, ...)
     #! Should delete image folder per default.
 
