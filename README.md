@@ -2,6 +2,9 @@
 
 <!-- [![Travis-CI Build Status](https://travis-ci.org/henningsway/r2anki.svg?branch=dev)](https://travis-ci.org/henningsway/r2anki) -->
 
+## A Quick Introduction
+[r2anki: Effectively Learn R through Spaced Repetition (Lightningtalk useR!2017)](https://www.youtube.com/watch?v=RfBEwkBXDPo)
+
 ## Effectively Learn *R* through Spaced Repetition
 The `r2anki`-package offers a streamlined approach to bring notes from your favourite programming language (written in R Markdown) to [Anki](https://ankisrs.net), a software for spaced repitition learning.
 
